@@ -1,10 +1,16 @@
-<button (click)="song1()">song1</button>
-<button (click)="song2()">song2</button>
+<div class="button-wrapper">
+  <button (click)="song1()">song1</button>
+  <button (click)="song2()">song2</button>
+</div>
+
 <hr>
 
-<H1>{{ song.title }}</H1>
-<H3>{{ song.artist }}</H3>
-<ng-container *ngFor="let x of lyrics">
-  <pre class="chords">{{ x.chords }}</pre>
-  <pre class="lyrics">{{ x.lyrics }}</pre>
-</ng-container>
+<div class="bible-verse">{{ bible }}</div>
+
+<div class="song-wrapper">
+  <h2>{{ song.title }}</h2>
+  <ng-container *ngFor="let line of lines">
+    <pre class="chords">{{ line.chords }}</pre>
+    <pre class="lyrics">{{ line.lyrics }}</pre>
+  </ng-container>
+</div>
