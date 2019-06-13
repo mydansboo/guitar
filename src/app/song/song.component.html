@@ -1,0 +1,10 @@
+<button (click)="song1()">song1</button>
+<button (click)="song2()">song2</button>
+<hr>
+
+<H1>{{ song.title }}</H1>
+<H3>{{ song.artist }}</H3>
+<ng-container *ngFor="let x of lyrics">
+  <pre class="chords">{{ x.chords }}</pre>
+  <pre class="lyrics">{{ x.lyrics }}</pre>
+</ng-container>
