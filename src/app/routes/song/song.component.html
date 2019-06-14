@@ -2,7 +2,7 @@
 
   <ng-container *ngIf="mode !== 'scroll'"><a (click)="setMode('scroll')">Scroll</a></ng-container>
   <ng-container *ngIf="mode !== 'next'"><a (click)="setMode('next')">Next</a></ng-container>
-  <a [routerLink]="'/youtube/' + song.id">You Tube</a>
+  <a [routerLink]="'/youtube/' + song.id">YouTube</a>
   <a routerLink="/list">Song List</a>
 </div>
 
