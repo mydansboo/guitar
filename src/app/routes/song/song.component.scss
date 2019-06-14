@@ -11,6 +11,8 @@
     display: block;
     padding: 10px;
     margin-bottom: 7px;
+    cursor: pointer;
+    user-select: none;
 
     &:last-child {
       margin-bottom: 0;
@@ -45,12 +47,6 @@
   text-align: center;
 }
 
-.song-wrapper {
-  margin-top: 70px;
-  padding-left: 90px;
-  padding-right: 90px;
-}
-
 .chords {
   color: rebeccapurple;
   font-size: 20px;
@@ -64,16 +60,90 @@
   font-family: monospace;
 }
 
-.chunk {
-  padding: 10px 100px;
-  margin-left: -100px;
-  margin-right: -100px;
-}
-
-.chunk.chorus {
-  background-color: #EEE;
-}
-
 pre {
   margin: 0;
+}
+
+.song-wrapper-scroll {
+  margin-top: 70px;
+  padding-left: 90px;
+  padding-right: 90px;
+
+  .chunk {
+    padding: 10px 100px;
+    margin-left: -100px;
+    margin-right: -100px;
+  }
+
+  .chunk.chorus {
+    background-color: #EEE;
+  }
+}
+
+.song-wrapper-next {
+  margin-top: 100px;
+  padding-left: 90px;
+  padding-right: 90px;
+
+  table {
+    table-layout: fixed;
+    width: 100%;
+
+    .left, .right {
+      background-color: #EEE;
+      width: 4%;
+      text-align: center;
+      cursor: pointer;
+    }
+
+    .left:hover, .right:hover {
+      background-color: #B0CDE2;
+      color: #FFF;
+    }
+
+    .middle {
+      width: 92%;
+    }
+  }
+
+  .chunk {
+    padding: 10px 30px;
+  }
+
+  .chunk-selectors {
+    position: absolute;
+    bottom: 64px;
+    left: 30%;
+    user-select: none;
+    cursor: pointer;
+    width: 40%;
+  }
+
+  .chunk-selector:nth-child(even) {
+    background-color: #FFF;
+  }
+
+  .chunk-selector:nth-child(odd) {
+    background-color: #EEE;
+  }
+
+  .chunk-selector:hover {
+    background-color: #DDD;
+  }
+
+  .chunk-selector.active {
+    background-color: #B0CDE2;
+  }
+
+  .chunk-type, .chunk-taster {
+    display: inline-block;
+  }
+
+  .chunk-type {
+    width: 100px;
+    padding: 10px;
+    margin-right: 10px;
+    background-color: #555;
+    color: #FFF;
+  }
 }

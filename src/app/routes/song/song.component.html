@@ -1,4 +1,7 @@
 <div class="links">
+
+  <ng-container *ngIf="mode !== 'scroll'"><a (click)="setMode('scroll')">Scroll</a></ng-container>
+  <ng-container *ngIf="mode !== 'next'"><a (click)="setMode('next')">Next</a></ng-container>
   <a [routerLink]="'/youtube/' + song.id">You Tube</a>
   <a routerLink="/list">Song List</a>
 </div>
@@ -7,15 +10,72 @@
 
 <div class="bible-verse">{{ bible }}</div>
 
-<div class="song-wrapper">
-  <ng-container *ngFor="let chunk of chunks">
-    <div class="chunk" [ngClass]="chunk.type">
-      <ng-container *ngFor="let line of chunk.lines">
-        <div class="line">
-          <pre class="chords">{{ line.chords }}</pre>
-          <pre class="lyrics">{{ line.lyrics }}</pre>
+<ng-container *ngIf="mode === 'scroll'">
+  <div class="song-wrapper-scroll">
+    <ng-container *ngFor="let chunk of chunks">
+      <div class="chunk" [ngClass]="chunk.type">
+        <ng-container *ngFor="let line of chunk.lines">
+          <div class="line">
+            <pre class="chords">{{ line.chords }}</pre>
+            <pre class="lyrics">{{ line.lyrics }}</pre>
+          </div>
+        </ng-container>
+      </div>
+    </ng-container>
+  </div>
+</ng-container>
+
+<ng-container *ngIf="mode === 'next'">
+  <div class="song-wrapper-next">
+    <table>
+      <tr>
+        <td class="left" (click)="prev()">
+          <i class="fa fa-chevron-circle-left fa-3x" aria-hidden="true"></i>
+        </td>
+        <td class="middle">
+          <ng-container *ngFor="let line of chunks[chunkNo].lines">
+            <div class="chunk" [ngClass]="chunks[chunkNo].type">
+              <div class="line">
+                <pre class="chords">{{ line.chords }}</pre>
+                <pre class="lyrics">{{ line.lyrics }}</pre>
+              </div>
+            </div>
+          </ng-container>
+        </td>
+        <td class="right" (click)="next()">
+          <i class="fa fa-chevron-circle-right fa-3x" aria-hidden="true"></i>
+        </td>
+      </tr>
+    </table>
+    <!--    <div class="row">-->
+    <!--      <div class="col-1">-->
+    <!--        <button (click)="prev()">-->
+    <!--          <i class="fa fa-chevron-circle-left fa-3x" aria-hidden="true"></i>-->
+    <!--        </button>-->
+    <!--      </div>-->
+    <!--      <div class="col-10">-->
+    <!--        <div class="chunk" [ngClass]="chunks[chunkNo].type">-->
+    <!--          <ng-container *ngFor="let line of chunks[chunkNo].lines">-->
+    <!--            <div class="line">-->
+    <!--              <pre class="chords">{{ line.chords }}</pre>-->
+    <!--              <pre class="lyrics">{{ line.lyrics }}</pre>-->
+    <!--            </div>-->
+    <!--          </ng-container>-->
+    <!--        </div>-->
+    <!--      </div>-->
+    <!--      <div class="col-1">-->
+    <!--        <button (click)="next()">-->
+    <!--          <i class="fa fa-chevron-circle-right fa-3x" aria-hidden="true"></i>-->
+    <!--        </button>-->
+    <!--      </div>-->
+    <!--    </div>-->
+    <div class="chunk-selectors">
+      <ng-container *ngFor="let chunk of chunks; index as i">
+        <div class="chunk-selector" (click)="setChunk(i)" [ngClass]="{active: i === chunkNo}">
+          <div class="chunk-type">{{ chunk.type }}</div>
+          <div class="chunk-taster">{{ chunk.lines[0].lyrics.split(',')[0].split('.')[0] }}</div>
         </div>
       </ng-container>
     </div>
-  </ng-container>
-</div>
+  </div>
+</ng-container>

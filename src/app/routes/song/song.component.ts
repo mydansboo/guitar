@@ -34,6 +34,8 @@ export class SongComponent implements OnInit {
   bible: string
   song: Song
   chunks: Array<Chunk>
+  mode = 'next'
+  chunkNo = 0
 
   constructor(private http: HttpClient, private route: ActivatedRoute) {}
 
@@ -43,6 +45,26 @@ export class SongComponent implements OnInit {
       const song = find(songs, {id})
       this.setSong(song)
     })
+  }
+
+  setMode(mode) {
+    this.mode = mode
+  }
+
+  prev() {
+    if (this.chunkNo > 0) {
+      this.chunkNo--
+    }
+  }
+
+  next() {
+    if (this.chunkNo < this.chunks.length - 1) {
+      this.chunkNo++
+    }
+  }
+
+  setChunk(chunk) {
+    this.chunkNo = chunk
   }
 
   private setSong(song) {
