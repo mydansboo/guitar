@@ -73,10 +73,15 @@ pre {
     padding: 10px 100px;
     margin-left: -100px;
     margin-right: -100px;
+    border-bottom: 1px solid #CCC;
   }
 
   .chunk.chorus {
     background-color: #EEE;
+  }
+
+  .chunk.bridge {
+    background-color: #DDD;
   }
 }
 
@@ -122,6 +127,7 @@ pre {
   }
 
   .chunk {
+    background-color: #EEE;
     padding: 10px 30px;
   }
 

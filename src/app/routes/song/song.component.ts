@@ -35,7 +35,7 @@ export class SongComponent implements OnInit {
   bible: string
   song: Song
   chunks: Array<Chunk>
-  mode = 'next'
+  mode = 'scroll'
   chunkNo = 0
 
   constructor(private http: HttpClient, private route: ActivatedRoute) {}
