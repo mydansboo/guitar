@@ -1,0 +1,45 @@
+{
+  "id": 3,
+  "title": "Good Good Father",
+  "bible": "Matthew 5:45",
+  "youTube": "djrY_eFDOwE",
+  "verses": [
+    {
+      "chords": "G            Gsus     G                    Gsus         G                           Gsus   G                      Gsus    G              C       G                            Am          C  D",
+      "lyrics": "Oh I've heard a thousand stories of what they think You're like. But I've heard the tender whisper of love in the dead of night. And You tell me that You're pleased and that I'm, never alone."
+    },
+    {
+      "chords": "       G                                                                                                                           C         G                   Am       D",
+      "lyrics": "Oh and I've seen many searching for answers far and wide. But I know we're all searching for answers only you provide. Because You know just what we need before we say a word."
+    },
+    {
+      "chords": "        G       Gsus   G            Gsus    G              Gsus                           G            C       G                    Am      G                    C       G                Am          D",
+      "lyrics": "Oh this Love so undeniable I, I can hardly speak. Peace so unexplainable I, I can hardly think. As You call me deeper still, as You call me deeper still, as You call me deeper still into love, love love."
+    }
+  ],
+  "choruses": [
+    {
+      "chords": "                   C                         G                 Am           C                     C                   G              Am         C",
+      "lyrics": "You're a good good Father. It's who You are, it's who You are, it's who You are. And I'm loved by you. It's who I am, it's who I am, it's who I am."
+    },
+    {
+      "chords": "D               C                      Em            Am                     G             C                     Em       D",
+      "lyrics": "Because You are perfect in all of Your ways. You are perfect in all of Your ways. You are perfect in all of Your ways to us."
+    },
+    {
+      "chords": "        C                      G   Am D       C                      G",
+      "lyrics": "You are perfect in all of Your ways.  You are perfect in all of Your ways."
+    }
+  ],
+  "order": [
+    "v0",
+    "c0",
+    "v1",
+    "c1",
+    "c1",
+    "v2",
+    "c0",
+    "c0",
+    "c2"
+  ]
+}
