@@ -20,12 +20,14 @@
 }
 
 .bible-verse {
+  position: fixed;
   background-color: #3D4C57;
   font-size: 24px;
   padding: 10px 45px;
-  margin-bottom: 10px;
   min-height: 56px;
   color: #FFF;
+  top: 0;
+  width: 100%;
 }
 
 .song-title {
@@ -44,7 +46,7 @@
 }
 
 .song-wrapper {
-  margin-top: 20px;
+  margin-top: 70px;
   padding-left: 90px;
   padding-right: 90px;
 }

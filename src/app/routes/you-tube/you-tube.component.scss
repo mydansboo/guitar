@@ -1,15 +1,17 @@
 .you-tube-wrapper {
-  margin-top: 100px;
+  margin-top: 150px;
   text-align: center;
 }
 
 .bible-verse {
+  position: fixed;
   background-color: #3D4C57;
   font-size: 24px;
   padding: 10px 45px;
-  margin-bottom: 10px;
   min-height: 56px;
   color: #FFF;
+  top: 0;
+  width: 100%;
 }
 
 .links {
