@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core'
-import hereIAmToWorship from './here-i-am-to-worship.json'
-import isntHeBeautiful from './isnt-he-beautiful.json'
-import { transform } from 'lodash'
-import { indicesOf } from '../utils/utils'
+import { find, transform } from 'lodash'
+import { indicesOf } from '../../utils/utils'
 import { HttpClient } from '@angular/common/http'
+import { songs } from '../songs/songs'
+import { ActivatedRoute } from '@angular/router'
 
 const MAX_LINE_LENGTH = 150
 
@@ -19,18 +19,14 @@ export class SongComponent implements OnInit {
   song
   lines
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient, private route: ActivatedRoute) {}
 
   ngOnInit() {
-    this.setSong(hereIAmToWorship)
-  }
-
-  song1() {
-    this.setSong(hereIAmToWorship)
-  }
-
-  song2() {
-    this.setSong(isntHeBeautiful)
+    this.route.paramMap.subscribe(params => {
+      const id = parseInt(params.get('id'), 10)
+      const song = find(songs, {id})
+      this.setSong(song)
+    })
   }
 
   private setSong(song) {

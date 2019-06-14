@@ -1,0 +1,5 @@
+<div class="song-list">
+  <div *ngFor="let song of songs">
+    <a [routerLink]="'/song/' + song.id">{{ song.title }}</a>
+  </div>
+</div>
