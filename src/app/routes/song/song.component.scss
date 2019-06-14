@@ -137,7 +137,15 @@ pre {
     left: 30%;
     user-select: none;
     cursor: pointer;
-    width: 40%;
+    width: 25%;
+  }
+
+  .chunk-selectors-1 {
+    left: 23%;
+  }
+
+  .chunk-selectors-2 {
+    left: 52%;
   }
 
   .chunk-selector:nth-child(even) {
