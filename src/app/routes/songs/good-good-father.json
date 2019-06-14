@@ -21,7 +21,9 @@
     {
       "chords": "                   G2                        D                 Em7          A                     G2                  D              Em7        A",
       "lyrics": "You're a good good Father. It's who You are, it's who You are, it's who You are. And I'm loved by you. It's who I am, it's who I am, it's who I am."
-    },
+    }
+  ],
+  "bridges": [
     {
       "chords": "                G2                     Bm7           Em7                    D             G2                     Bm7      A",
       "lyrics": "Because You are perfect in all of Your ways. You are perfect in all of Your ways. You are perfect in all of Your ways. To us."
@@ -35,11 +37,11 @@
     "v0",
     "c0",
     "v1",
-    "c1",
-    "c1",
+    "b0",
+    "b0",
     "v2",
     "c0",
     "c0",
-    "c2"
+    "b1"
   ]
 }

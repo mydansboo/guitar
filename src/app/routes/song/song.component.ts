@@ -14,6 +14,7 @@ interface Song {
   youTube: string,
   verses: Array<{ chords: string, lyrics: string }>,
   choruses: Array<{ chords: string, lyrics: string }>,
+  bridges: Array<{ chords: string, lyrics: string }>,
   order: [string]
 }
 
@@ -96,7 +97,7 @@ export class SongComponent implements OnInit {
   }
 
   private getChunks() {
-    const {verses, choruses, order} = this.song
+    const {verses, choruses, bridges, order} = this.song
     const lines = order.map(o => {
       const what = o[0]
       const idx = parseInt(o[1], 10)
@@ -112,6 +113,13 @@ export class SongComponent implements OnInit {
           type: 'chorus'
         }
       }
+      if (what === 'b') {
+        return {
+          lines: [bridges[idx]],
+          type: 'bridge'
+        }
+      }
+
     })
     return lines
   }
