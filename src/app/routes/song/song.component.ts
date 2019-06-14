@@ -35,7 +35,7 @@ export class SongComponent implements OnInit {
   bible: string
   song: Song
   chunks: Array<Chunk>
-  mode = 'scroll'
+  mode = localStorage.getItem('mode') || 'scroll'
   chunkNo = 0
 
   constructor(private http: HttpClient, private route: ActivatedRoute) {}
@@ -51,6 +51,7 @@ export class SongComponent implements OnInit {
   setMode(mode) {
     this.chunkNo = 0
     this.mode = mode
+    localStorage.setItem('mode', mode)
   }
 
   prev() {
