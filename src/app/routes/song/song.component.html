@@ -1,13 +1,13 @@
 <div class="links">
+  <a [routerLink]="'/youtube/' + song.id">You Tube</a>
   <a routerLink="/list">Song List</a>
 </div>
 
-<hr>
+<div class="song-title">{{ song.title }}</div>
 
 <div class="bible-verse">{{ bible }}</div>
 
 <div class="song-wrapper">
-  <h2>{{ song.title }}</h2>
   <ng-container *ngFor="let line of lines">
     <pre class="chords">{{ line.chords }}</pre>
     <pre class="lyrics">{{ line.lyrics }}</pre>

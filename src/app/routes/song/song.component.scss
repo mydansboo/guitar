@@ -1,33 +1,52 @@
 .links {
-  padding: 20px;
+  position:absolute;
+  right: 0;
+  bottom: 0;
 
   a {
-    margin-left: 30px;
+    border-top-left-radius: 5px;
+    border-bottom-left-radius: 5px;
+    background-color: #CEC5B4;
+    color: #000;
+    display: block;
+    padding: 10px;
+    margin-bottom: 7px;
+
+    &:last-child {
+      margin-bottom: 0;
+      border-bottom-left-radius: 0;
+    }
   }
 }
 
-hr {
-  margin-top: 0;
-  margin-bottom: 0;
-}
-
 .bible-verse {
-  background-color: #4B86B4;
-  font-size: 20px;
+  background-color: #3D4C57;
+  font-size: 24px;
   padding: 10px 45px;
   margin-bottom: 10px;
-  min-height: 50px;
+  min-height: 56px;
   color: #FFF;
+}
+
+.song-title {
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  width: 400px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  background-color: #3D4C57;
+  color: #FFF;
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
+  margin-left: -200px;
+  text-align: center;
 }
 
 .song-wrapper {
   margin-top: 20px;
   padding-left: 90px;
   padding-right: 90px;
-}
-
-h2 {
-  margin-bottom: 20px;
 }
 
 .chords {
