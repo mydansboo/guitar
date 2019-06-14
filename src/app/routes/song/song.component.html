@@ -33,14 +33,14 @@
           <i class="fa fa-chevron-circle-left fa-3x" aria-hidden="true"></i>
         </td>
         <td class="middle">
-          <ng-container *ngFor="let line of chunks[chunkNo].lines">
-            <div class="chunk" [ngClass]="chunks[chunkNo].type">
+          <div class="chunk" [ngClass]="chunks[chunkNo].type">
+            <ng-container *ngFor="let line of chunks[chunkNo].lines">
               <div class="line">
                 <pre class="chords">{{ line.chords }}</pre>
                 <pre class="lyrics">{{ line.lyrics }}</pre>
               </div>
-            </div>
-          </ng-container>
+            </ng-container>
+          </div>
         </td>
         <td class="right direction" (click)="next()" [ngClass]="{disabled: chunkNo === chunks.length - 1}">
           <i class="fa fa-chevron-circle-right fa-3x" aria-hidden="true"></i>
