@@ -29,7 +29,7 @@
   <div class="song-wrapper-next">
     <table>
       <tr>
-        <td class="left" (click)="prev()">
+        <td class="left direction" (click)="prev()" [ngClass]="{disabled: chunkNo === 0}">
           <i class="fa fa-chevron-circle-left fa-3x" aria-hidden="true"></i>
         </td>
         <td class="middle">
@@ -42,38 +42,16 @@
             </div>
           </ng-container>
         </td>
-        <td class="right" (click)="next()">
+        <td class="right direction" (click)="next()" [ngClass]="{disabled: chunkNo === chunks.length - 1}">
           <i class="fa fa-chevron-circle-right fa-3x" aria-hidden="true"></i>
         </td>
       </tr>
     </table>
-    <!--    <div class="row">-->
-    <!--      <div class="col-1">-->
-    <!--        <button (click)="prev()">-->
-    <!--          <i class="fa fa-chevron-circle-left fa-3x" aria-hidden="true"></i>-->
-    <!--        </button>-->
-    <!--      </div>-->
-    <!--      <div class="col-10">-->
-    <!--        <div class="chunk" [ngClass]="chunks[chunkNo].type">-->
-    <!--          <ng-container *ngFor="let line of chunks[chunkNo].lines">-->
-    <!--            <div class="line">-->
-    <!--              <pre class="chords">{{ line.chords }}</pre>-->
-    <!--              <pre class="lyrics">{{ line.lyrics }}</pre>-->
-    <!--            </div>-->
-    <!--          </ng-container>-->
-    <!--        </div>-->
-    <!--      </div>-->
-    <!--      <div class="col-1">-->
-    <!--        <button (click)="next()">-->
-    <!--          <i class="fa fa-chevron-circle-right fa-3x" aria-hidden="true"></i>-->
-    <!--        </button>-->
-    <!--      </div>-->
-    <!--    </div>-->
     <div class="chunk-selectors">
       <ng-container *ngFor="let chunk of chunks; index as i">
         <div class="chunk-selector" (click)="setChunk(i)" [ngClass]="{active: i === chunkNo}">
           <div class="chunk-type">{{ chunk.type }}</div>
-          <div class="chunk-taster">{{ chunk.lines[0].lyrics.split(',')[0].split('.')[0] }}</div>
+          <div class="chunk-taster">{{ chunk.lines[0].lyrics | excerpt }}</div>
         </div>
       </ng-container>
     </div>

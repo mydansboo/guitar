@@ -6,7 +6,8 @@ import { SongComponent } from './routes/song/song.component'
 import { HttpClientModule } from '@angular/common/http'
 import { SongListComponent } from './routes/song-list/song-list.component';
 import { YouTubeComponent } from './routes/you-tube/you-tube.component';
-import { SafePipe } from './pipes/safe.pipe'
+import { SafePipe } from './pipes/safe.pipe';
+import { ExcerptPipe } from './pipes/excerpt.pipe'
 
 @NgModule({
   declarations: [
@@ -14,7 +15,8 @@ import { SafePipe } from './pipes/safe.pipe'
     SongComponent,
     SongListComponent,
     YouTubeComponent,
-    SafePipe
+    SafePipe,
+    ExcerptPipe
   ],
   imports: [
     BrowserModule,

@@ -49,6 +49,7 @@ export class SongComponent implements OnInit {
   }
 
   setMode(mode) {
+    this.chunkNo = 0
     this.mode = mode
   }
 

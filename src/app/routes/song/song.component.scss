@@ -89,16 +89,31 @@ pre {
     table-layout: fixed;
     width: 100%;
 
-    .left, .right {
-      background-color: #EEE;
+    .left {
+      border-top-left-radius: 7px;
+      border-bottom-left-radius: 7px;
+    }
+
+    .right {
+      border-top-right-radius: 7px;
+      border-bottom-right-radius: 7px;
+    }
+
+    .direction {
+      background-color: darken(#B0CDE2, 10%);
       width: 4%;
       text-align: center;
       cursor: pointer;
+      color: #FFF;
     }
 
-    .left:hover, .right:hover {
+    .direction:hover {
       background-color: #B0CDE2;
-      color: #FFF;
+    }
+
+    .direction.disabled {
+      background-color: #999;
+      cursor: not-allowed;
     }
 
     .middle {
