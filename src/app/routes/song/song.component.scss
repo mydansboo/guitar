@@ -64,27 +64,15 @@
   font-family: monospace;
 }
 
-.line {
+.chunk {
+  padding: 10px 100px;
   margin-left: -100px;
   margin-right: -100px;
-  padding-left: 100px;
-  padding-right: 100px;
-  padding-top: 5px;
 }
 
-.line.end {
-  padding-bottom: 10px;
+.chunk.chorus {
+  background-color: #EEE;
 }
-
-.line.chorus {
-  background-color: #F5F5F5;
-}
-
-.line.chorus-end {}
-
-.line.verse {}
-
-.line.verse-end {}
 
 pre {
   margin: 0;

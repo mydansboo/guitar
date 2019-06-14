@@ -7,17 +7,33 @@ import { ActivatedRoute } from '@angular/router'
 
 const MAX_LINE_LENGTH = 150
 
+interface Song {
+  id: number,
+  title: string,
+  bible: string,
+  youTube: string,
+  verses: Array<{ chords: string, lyrics: string }>,
+  choruses: Array<{ chords: string, lyrics: string }>,
+  order: [string]
+}
+
+interface Chunk {
+  lines: Array<{ chords: string, lyrics: string }>,
+  type: string
+}
+
 @Component({
   selector: 'app-song',
   templateUrl: './song.component.html',
   styleUrls: ['./song.component.scss']
 })
 
+
 export class SongComponent implements OnInit {
 
-  bible
-  song
-  lines
+  bible: string
+  song: Song
+  chunks: Array<Chunk>
 
   constructor(private http: HttpClient, private route: ActivatedRoute) {}
 
@@ -31,7 +47,8 @@ export class SongComponent implements OnInit {
 
   private setSong(song) {
     this.song = song
-    this.setLines()
+    console.log(this.song)
+    this.setChunks()
     this.setBible()
   }
 
@@ -41,28 +58,35 @@ export class SongComponent implements OnInit {
     })
   }
 
-  private setLines() {
-    let lines
-    lines = this.getLines()
-    lines = this.chopLinesOnFullstops(lines)
-    lines = this.chopLinesInHalf(lines)
-    this.lines = lines
+  private setChunks() {
+    let chunks
+    chunks = this.getChunks()
+    chunks = chunks.map((chunk) => {
+      chunk.lines = this.chopLinesOnFullstops(chunk.lines)
+      return chunk
+    })
+    chunks = chunks.map((chunk) => {
+      chunk.lines = this.chopLinesInHalf(chunk.lines)
+      return chunk
+    })
+    console.log(chunks[0])
+    this.chunks = chunks
   }
 
-  private getLines() {
+  private getChunks() {
     const {verses, choruses, order} = this.song
     const lines = order.map(o => {
       const what = o[0]
-      const idx = o[1] * 1
+      const idx = parseInt(o[1], 10)
       if (what === 'v') {
         return {
-          ... verses[idx],
+          lines: [verses[idx]],
           type: 'verse'
         }
       }
       if (what === 'c') {
         return {
-          ... choruses[idx],
+          lines: [choruses[idx]],
           type: 'chorus'
         }
       }
@@ -81,7 +105,7 @@ export class SongComponent implements OnInit {
             const idx1 = idxs[i]
             const idx2 = idxs[i + 1]
             const splitLine = {
-              ... line,
+              ...line,
               chords: line.chords.substring(idx1, idx2),
               lyrics: line.lyrics.substring(idx1, idx2)
             }
@@ -104,13 +128,13 @@ export class SongComponent implements OnInit {
         let idx = Math.round(line.lyrics.length / 2) + 1
         while (line.lyrics.charAt(idx - 1) !== ' ' || line.chords.charAt(idx - 1) !== ' ') {idx++}
         const line1 = {
-          ... line,
+          ...line,
           chords: line.chords.substring(0, idx),
           lyrics: line.lyrics.substring(0, idx)
         }
         result.push(line1)
         const line2 = {
-          ... line,
+          ...line,
           chords: line.chords.substring(idx),
           lyrics: line.lyrics.substring(idx)
         }
