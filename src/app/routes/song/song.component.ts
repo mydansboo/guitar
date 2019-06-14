@@ -55,10 +55,16 @@ export class SongComponent implements OnInit {
       const what = o[0]
       const idx = o[1] * 1
       if (what === 'v') {
-        return verses[idx]
+        return {
+          ... verses[idx],
+          type: 'verse'
+        }
       }
       if (what === 'c') {
-        return choruses[idx]
+        return {
+          ... choruses[idx],
+          type: 'chorus'
+        }
       }
     })
     return lines
@@ -75,6 +81,7 @@ export class SongComponent implements OnInit {
             const idx1 = idxs[i]
             const idx2 = idxs[i + 1]
             const splitLine = {
+              ... line,
               chords: line.chords.substring(idx1, idx2),
               lyrics: line.lyrics.substring(idx1, idx2)
             }
@@ -97,11 +104,13 @@ export class SongComponent implements OnInit {
         let idx = Math.round(line.lyrics.length / 2) + 1
         while (line.lyrics.charAt(idx - 1) !== ' ' || line.chords.charAt(idx - 1) !== ' ') {idx++}
         const line1 = {
+          ... line,
           chords: line.chords.substring(0, idx),
           lyrics: line.lyrics.substring(0, idx)
         }
         result.push(line1)
         const line2 = {
+          ... line,
           chords: line.chords.substring(idx),
           lyrics: line.lyrics.substring(idx)
         }

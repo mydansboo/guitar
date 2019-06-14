@@ -8,8 +8,10 @@
 <div class="bible-verse">{{ bible }}</div>
 
 <div class="song-wrapper">
-  <ng-container *ngFor="let line of lines">
-    <pre class="chords">{{ line.chords }}</pre>
-    <pre class="lyrics">{{ line.lyrics }}</pre>
+  <ng-container *ngFor="let line of lines; index as i">
+    <div class="line" [ngClass]="line.type + ' ' + (lines[i + 1]?.type !== line.type ? line.type + '-end end' : '')">
+      <pre class="chords">{{ line.chords }}</pre>
+      <pre class="lyrics">{{ line.lyrics }}</pre>
+    </div>
   </ng-container>
 </div>
