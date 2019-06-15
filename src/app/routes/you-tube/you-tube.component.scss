@@ -1,25 +1,6 @@
+@import '../../shared/links/anchors';
+
 .you-tube-wrapper {
   margin-top: 100px;
   text-align: center;
-}
-
-.links {
-  position:fixed;
-  right: 0;
-  bottom: 0;
-
-  a {
-    border-top-left-radius: 5px;
-    border-bottom-left-radius: 5px;
-    background-color: #CEC5B4;
-    color: #000;
-    display: block;
-    padding: 10px;
-    margin-bottom: 7px;
-
-    &:last-child {
-      margin-bottom: 0;
-      border-bottom-left-radius: 0;
-    }
-  }
 }

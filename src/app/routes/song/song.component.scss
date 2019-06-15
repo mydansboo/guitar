@@ -1,25 +1,4 @@
-.links {
-  position:fixed;
-  right: 0;
-  bottom: 0;
-
-  a {
-    border-top-left-radius: 5px;
-    border-bottom-left-radius: 5px;
-    background-color: #CEC5B4;
-    color: #000;
-    display: block;
-    padding: 10px;
-    margin-bottom: 7px;
-    cursor: pointer;
-    user-select: none;
-
-    &:last-child {
-      margin-bottom: 0;
-      border-bottom-left-radius: 0;
-    }
-  }
-}
+@import '../../shared/links/anchors';
 
 .chords {
   color: rebeccapurple;
@@ -109,7 +88,6 @@ pre {
     position: absolute;
     bottom: 64px;
     left: 30%;
-    user-select: none;
     cursor: pointer;
     width: 25%;
   }

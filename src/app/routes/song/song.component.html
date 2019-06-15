@@ -1,12 +1,11 @@
 <app-bible-verse [bible]="song.bible"></app-bible-verse>
 
-<div class="links">
-
-  <ng-container *ngIf="mode !== 'scroll'"><a (click)="setMode('scroll')">Scroll</a></ng-container>
-  <ng-container *ngIf="mode !== 'next'"><a (click)="setMode('next')">Next</a></ng-container>
+<app-links>
+  <ng-container *ngIf="mode !== 'scroll'"><a href="javascript: void(0)" (click)="setMode('scroll')">Scroll</a></ng-container>
+  <ng-container *ngIf="mode !== 'next'"><a href="javascript: void(0)" (click)="setMode('next')">Next</a></ng-container>
   <a [routerLink]="'/youtube/' + song.id">YouTube</a>
-  <a routerLink="/list">Song List</a>
-</div>
+  <a routerLink="/list">List</a>
+</app-links>
 
 <ng-container *ngIf="mode === 'scroll'">
   <div class="song-wrapper-scroll">

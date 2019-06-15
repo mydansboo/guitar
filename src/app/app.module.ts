@@ -10,7 +10,8 @@ import { SafePipe } from './pipes/safe.pipe'
 import { ExcerptPipe } from './pipes/excerpt.pipe'
 import { BibleVerseComponent } from './shared/bible-verse/bible-verse.component'
 import { CapitalisePipe } from './pipes/capitalise.pipe'
-import { SongFooterComponent } from './shared/song-footer/song-footer.component'
+import { SongFooterComponent } from './shared/song-footer/song-footer.component';
+import { LinksComponent } from './shared/links/links.component'
 
 @NgModule({
   declarations: [
@@ -22,7 +23,8 @@ import { SongFooterComponent } from './shared/song-footer/song-footer.component'
     ExcerptPipe,
     BibleVerseComponent,
     CapitalisePipe,
-    SongFooterComponent
+    SongFooterComponent,
+    LinksComponent
   ],
   imports: [
     BrowserModule,

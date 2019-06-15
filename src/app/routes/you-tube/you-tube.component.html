@@ -1,9 +1,9 @@
 <app-bible-verse [bible]="song.bible"></app-bible-verse>
 
-<div class="links">
+<app-links>
   <a [routerLink]="'/song/' + song.id">Song</a>
-  <a routerLink="/list">Song List</a>
-</div>
+  <a routerLink="/list">List</a>
+</app-links>
 
 <div class="you-tube-wrapper">
   <!--suppress HtmlDeprecatedAttribute -->
