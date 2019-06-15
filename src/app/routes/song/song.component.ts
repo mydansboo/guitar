@@ -58,7 +58,7 @@ export class SongComponent implements OnInit {
     }
   }
 
-  next() {
+  slides() {
     if (this.chunkNo < this.chunks.length - 1) {
       this.chunkNo++
     }

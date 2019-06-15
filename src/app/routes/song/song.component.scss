@@ -54,47 +54,11 @@ pre {
   }
 }
 
-.song-wrapper-next {
+.song-wrapper-slides {
   margin-top: 20px;
   padding-left: 20px;
   padding-right: 20px;
-
-  //table {
-  //  table-layout: fixed;
-  //  width: 100%;
-  //
-  //  .left {
-  //    border-top-left-radius: 7px;
-  //    border-bottom-left-radius: 7px;
-  //  }
-  //
-  //  .right {
-  //    border-top-right-radius: 7px;
-  //    border-bottom-right-radius: 7px;
-  //  }
-  //
-  //  .direction {
-  //    background-color: darken(#B0CDE2, 10%);
-  //    width: 4%;
-  //    text-align: center;
-  //    cursor: pointer;
-  //    color: #FFF;
-  //  }
-  //
-  //  .direction:hover {
-  //    background-color: #B0CDE2;
-  //  }
-  //
-  //  .direction.disabled {
-  //    background-color: #999;
-  //    cursor: not-allowed;
-  //  }
-  //
-  //  .middle {
-  //    width: 92%;
-  //  }
-  //}
-
+  
   .direction {
     position: absolute;
     top: 40%;

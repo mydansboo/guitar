@@ -2,7 +2,7 @@
 
 <app-links>
   <ng-container *ngIf="mode !== 'scroll'"><a href="javascript: void(0)" (click)="setMode('scroll')">Scroll</a></ng-container>
-  <ng-container *ngIf="mode !== 'next'"><a href="javascript: void(0)" (click)="setMode('next')">Next</a></ng-container>
+  <ng-container *ngIf="mode !== 'slides'"><a href="javascript: void(0)" (click)="setMode('slides')">Slides</a></ng-container>
   <a [routerLink]="'/youtube/' + song.id">YouTube</a>
   <a routerLink="/list">List</a>
 </app-links>
@@ -23,11 +23,9 @@
   </div>
 </ng-container>
 
-<ng-container *ngIf="mode === 'next'">
-  <div class="song-wrapper-next">
-    <!--        <td class="left direction" (click)="prev()" [ngClass]="{disabled: chunkNo === 0}">-->
-    <!--          <i class="fa fa-chevron-circle-left fa-3x" aria-hidden="true"></i>-->
-    <!--        </td>-->
+<ng-container *ngIf="mode === 'slides'">
+  
+  <div class="song-wrapper-slides">
     <div class="chunk-wrapper">
       <div class="chunk" [ngClass]="chunks[chunkNo].type">
         <ng-container *ngFor="let line of chunks[chunkNo].lines">
@@ -38,15 +36,12 @@
         </ng-container>
       </div>
     </div>
-    <!--        <td class="right direction" (click)="next()" [ngClass]="{disabled: chunkNo === chunks.length - 1}">-->
-    <!--          <i class="fa fa-chevron-circle-right fa-3x" aria-hidden="true"></i>-->
-    <!--        </td>-->
 
     <div class="left direction" (click)="prev()" [ngClass]="{disabled: chunkNo === 0}">
       <i class="fa fa-chevron-circle-left fa-4x" aria-hidden="true"></i>
     </div>
 
-    <div class="right direction" (click)="next()" [ngClass]="{disabled: chunkNo === chunks.length - 1}">
+    <div class="right direction" (click)="slides()" [ngClass]="{disabled: chunkNo === chunks.length - 1}">
       <i class="fa fa-chevron-circle-right fa-4x" aria-hidden="true"></i>
     </div>
 
