@@ -3,6 +3,7 @@
   "title": "Good Good Father",
   "bible": "Matthew 5:45",
   "youTube": "djrY_eFDOwE",
+  "labels": [],
   "verses": [
     {
       "chords": "D               Dsus4    D                    Dsus4        D    @                   Dsus4  D                      Dsus4   D     @        G       D                            Em7        A",
@@ -10,7 +11,7 @@
     },
     {
       "chords": "       D                                                 @                                                            @            G         D                   Em7      A",
-      "lyrics": "Oh and I've seen many searching for answers far and wide @But I know we're all searching for answers only you provide @Because You know just what we need before we say a word"
+      "lyrics": "Oh and I've seen many searching for answers far and wide @But I know we're all searching for answers only You provide @Because You know just what we need before we say a word"
     },
     {
       "chords": "        D       Dsus4    D             Dsus4  D     @         Dsus4    D                Dsus4  D     @       G       D                    Em7     D            @       G       D                 Em7         A",
@@ -20,7 +21,7 @@
   "choruses": [
     {
       "chords": "                   G      @                  D                 Em7          A   @                 G   @               D              Em7        A",
-      "lyrics": "You're a good good Father @It's who You are, it's who You are, it's who You are @And I'm loved by you @It's who I am, it's who I am, it's who I am"
+      "lyrics": "You're a good good Father @It's who You are, it's who You are, it's who You are @And I'm loved by You @It's who I am, it's who I am, it's who I am"
     }
   ],
   "bridges": [
