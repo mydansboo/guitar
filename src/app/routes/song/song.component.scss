@@ -2,14 +2,14 @@
 @import '../../../globals';
 
 .chords {
-  color: rebeccapurple;
+  color: darken(#F77000, 20%);
   font-size: 20px;
   font-family: monospace;
 }
 
 .lyrics {
   margin-top: -5px;
-  color: blue;
+  color: #376C9F;
   font-size: 20px;
   font-family: monospace;
 }
@@ -25,22 +25,23 @@ pre {
   margin-bottom: ($footerHeight + 20) + unquote("px");
 
   .chunk {
-    padding: 10px 100px;
+    padding: 10px 100px 15px;
     margin-left: -100px;
     margin-right: -100px;
-    border-bottom: 1px solid #CCC;
+    border-bottom: 1px solid #EEE;
   }
 
   .chunk.verse {
-    background-color: yellow;
+    // background-color: yellow;
   }
 
   .chunk.chorus {
-    background-color: #EEE;
+    background-color: #fafafa;
   }
 
   .chunk.bridge {
-    background-color: #DDD;
+    background-color: #fafafa;
+    // background-color: lighten(#B0CDE3, 10%);
   }
 }
 

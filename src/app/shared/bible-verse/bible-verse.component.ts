@@ -17,7 +17,7 @@ export class BibleVerseComponent implements OnInit {
   constructor(private http: HttpClient) {}
 
   ngOnInit() {
-    this.http.get('https://bible-api.com/' + this.bible).subscribe((res: any) => {
+    this.http.get('https://bible-api.com/' + encodeURIComponent(this.bible)).subscribe((res: any) => {
       this.verse = res.text
       this.ref = res.reference.toUpperCase()
       this.translation.abbr = res.translation_id.toUpperCase()
