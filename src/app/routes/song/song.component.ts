@@ -4,22 +4,8 @@ import { indicesOf } from '../../utils/utils'
 import { songs } from '../songs/songs'
 import { ActivatedRoute } from '@angular/router'
 import { LocalStorageService } from '../../services/local-storage.service'
-
-interface Song {
-  id: number,
-  title: string,
-  bible: string,
-  youTube: string,
-  verses: Array<{ chords: string, lyrics: string }>,
-  choruses: Array<{ chords: string, lyrics: string }>,
-  bridges: Array<{ chords: string, lyrics: string }>,
-  order: [string]
-}
-
-interface Chunk {
-  lines: Array<{ chords: string, lyrics: string }>,
-  type: string
-}
+import { Chunk } from 'src/app/interfaces/chunk'
+import { Song } from 'src/app/interfaces/song'
 
 const SPLITTER = '@'
 

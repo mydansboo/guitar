@@ -1,6 +1,7 @@
 import { Component } from '@angular/core'
 import { songs } from '../songs/songs'
 import { sortBy } from 'lodash'
+import { Song } from 'src/app/interfaces/song'
 
 @Component({
   selector: 'app-song-list',
@@ -9,5 +10,5 @@ import { sortBy } from 'lodash'
 })
 
 export class SongListComponent {
-  songs = sortBy(songs, 'title')
+  songs: Array<Song> = sortBy(songs, 'title')
 }
