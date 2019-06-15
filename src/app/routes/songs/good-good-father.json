@@ -5,32 +5,32 @@
   "youTube": "djrY_eFDOwE",
   "verses": [
     {
-      "chords": "D               Dsus4    D                    Dsus4        D                        Dsus4  D                      Dsus4   D              G       D                            Em7        A",
-      "lyrics": "Oh I've heard a thousand stories of what they think You're like. But I've heard the tender whisper of love in the dead of night. And You tell me that You're pleased and that I'm, never alone."
+      "chords": "D               Dsus4    D                    Dsus4        D    @                   Dsus4  D                      Dsus4   D     @        G       D                            Em7        A",
+      "lyrics": "Oh I've heard a thousand stories of what they think You're like @But I've heard the tender whisper of love in the dead of night @And You tell me that You're pleased and that I'm, never alone"
     },
     {
-      "chords": "       D                                                                                                                           G         D                   Em7      A",
-      "lyrics": "Oh and I've seen many searching for answers far and wide. But I know we're all searching for answers only you provide. Because You know just what we need before we say a word."
+      "chords": "       D                                                 @                                                            @            G         D                   Em7      A",
+      "lyrics": "Oh and I've seen many searching for answers far and wide @But I know we're all searching for answers only you provide @Because You know just what we need before we say a word"
     },
     {
-      "chords": "        D       Dsus4    D             Dsus4  D               Dsus4    D                Dsus4  D             G       D                    Em7     D                    G       D                 Em7        A",
-      "lyrics": "Oh this Love so undeni - able I, I can hardly speak. Peace so unexpl - ainable I, I can hardly think. As You call me deeper still, as You call me deeper still, as You call me deeper still into love, love love."
+      "chords": "        D       Dsus4    D             Dsus4  D     @         Dsus4    D                Dsus4  D     @       G       D                    Em7     D            @       G       D                 Em7         A",
+      "lyrics": "Oh this Love so undeni - able I, I can hardly speak @Peace so unexpl - ainable I, I can hardly think @As You call me deeper still, as You call me deeper still @as You call me deeper still into love, love, love"
     }
   ],
   "choruses": [
     {
-      "chords": "                   G                         D                 Em7          A                     G                   D              Em7        A",
-      "lyrics": "You're a good good Father. It's who You are, it's who You are, it's who You are. And I'm loved by you. It's who I am, it's who I am, it's who I am."
+      "chords": "                   G      @                  D                 Em7          A   @                 G   @               D              Em7        A",
+      "lyrics": "You're a good good Father @It's who You are, it's who You are, it's who You are @And I'm loved by you @It's who I am, it's who I am, it's who I am"
     }
   ],
   "bridges": [
     {
-      "chords": "                G                      Bm7           Em7                    D             G                      Bm7      A",
-      "lyrics": "Because You are perfect in all of Your ways. You are perfect in all of Your ways. You are perfect in all of Your ways. To us."
+      "chords": "                G                      Bm7  @        Em7                    D    @        G                      Bm7  @   A",
+      "lyrics": "Because You are perfect in all of Your ways @You are perfect in all of Your ways @You are perfect in all of Your ways @To us"
     },
     {
-      "chords": "        G                      D   Em7  A         G                      D   Bm  A",
-      "lyrics": "You are perfect in all of Your ways.      You are perfect in all of Your ways."
+      "chords": "        G                      D   Em7  A@        G                      D   Bm  A",
+      "lyrics": "You are perfect in all of Your ways      @You are perfect in all of Your ways"
     }
   ],
   "order": [
