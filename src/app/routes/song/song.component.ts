@@ -1,11 +1,9 @@
 import { Component, OnInit } from '@angular/core'
-import { find, transform } from 'lodash'
+import { find, intersection, transform } from 'lodash'
 import { indicesOf } from '../../utils/utils'
 import { songs } from '../songs/songs'
 import { ActivatedRoute } from '@angular/router'
 import { LocalStorageService } from '../../services/local-storage.service'
-
-const MAX_LINE_LENGTH = 150
 
 interface Song {
   id: number,
@@ -22,6 +20,8 @@ interface Chunk {
   lines: Array<{ chords: string, lyrics: string }>,
   type: string
 }
+
+const SPLITTER = '@'
 
 @Component({
   selector: 'app-song',
@@ -102,7 +102,6 @@ export class SongComponent implements OnInit {
 
   private setSong(song) {
     this.song = song
-    console.log(this.song)
     this.setChunks()
   }
 
@@ -110,15 +109,11 @@ export class SongComponent implements OnInit {
     let chunks
     chunks = this.getChunks()
     chunks = chunks.map((chunk) => {
-      chunk.lines = this.chopLinesOnFullstops(chunk.lines)
+      chunk.lines = this.chopLinesOnSymbol(chunk.lines)
       return chunk
     })
-    chunks = chunks.map((chunk) => {
-      chunk.lines = this.chopLinesInHalf(chunk.lines)
-      return chunk
-    })
-    console.log(chunks[0])
     this.chunks = chunks
+    console.log('chunks', chunks)
   }
 
   private getChunks() {
@@ -129,81 +124,55 @@ export class SongComponent implements OnInit {
       if (what === 'v') {
         return {
           lines: [verses[idx]],
-          type: 'verse'
+          type: 'verse',
+          number: idx + 1,
+          count: verses.length
         }
       }
       if (what === 'c') {
         return {
           lines: [choruses[idx]],
-          type: 'chorus'
+          type: 'chorus',
+          number: idx + 1,
+          count: choruses.length
         }
       }
       if (what === 'b') {
         return {
           lines: [bridges[idx]],
-          type: 'bridge'
+          type: 'bridge',
+          number: idx + 1,
+          count: bridges.length
         }
       }
-
     })
     return lines
   }
 
-  private chopLinesOnFullstops(lines) {
+  private chopLinesOnSymbol(lines) {
     lines = transform(lines, (result, line) => {
-      let idxs
-      idxs = indicesOf(line.lyrics, '. ').map(i => i + 2)
-      idxs = idxs.map(idx => {
-        while (line.lyrics.charAt(idx - 1) !== ' ' || line.chords.charAt(idx - 1) !== ' ') {idx++}
-        return idx
-      })
+      const idxs1 = indicesOf(line.chords, SPLITTER)
+      const idxs2 = indicesOf(line.lyrics, SPLITTER)
+      let idxs = intersection(idxs1, idxs2)
       if (idxs.length) {
-        if (idxs[idxs.length - 1] === line.lyrics.length) {idxs.pop()}
-        if (idxs.length) {
-          idxs = [0, ...idxs, line.lyrics.length]
-          for (let i = 0; i < idxs.length - 1; i++) {
-            const idx1 = idxs[i]
-            const idx2 = idxs[i + 1]
-            const splitLine = {
-              ...line,
-              chords: line.chords.substring(idx1, idx2),
-              lyrics: line.lyrics.substring(idx1, idx2)
-            }
-            result.push(splitLine)
+        const lineLength = Math.max(line.lyrics.length, line.chords.length)
+        idxs = [0, ...idxs, lineLength]
+        for (let i = 0; i < idxs.length - 1; i++) {
+          const idx1 = idxs[i]
+          const idx2 = idxs[i + 1]
+          const chords = line.chords.substring(idx1, idx2)
+          const lyrics = line.lyrics.substring(idx1, idx2)
+          const splitLine = {
+            ...line,
+            chords: chords.startsWith(SPLITTER) ? chords.substring(1) : chords,
+            lyrics: lyrics.startsWith(SPLITTER) ? lyrics.substring(1) : lyrics
           }
-        } else {
-          result.push(line)
+          result.push(splitLine)
         }
       } else {
         result.push(line)
       }
     }, [])
     return lines
-  }
-
-  private chopLinesInHalf(lines) {
-    let change = false
-    lines = transform(lines, (result, line) => {
-      if (line.lyrics.length > MAX_LINE_LENGTH) {
-        let idx = Math.round(line.lyrics.length / 2) + 1
-        while (line.lyrics.charAt(idx - 1) !== ' ' || line.chords.charAt(idx - 1) !== ' ') {idx++}
-        const line1 = {
-          ...line,
-          chords: line.chords.substring(0, idx),
-          lyrics: line.lyrics.substring(0, idx)
-        }
-        result.push(line1)
-        const line2 = {
-          ...line,
-          chords: line.chords.substring(idx),
-          lyrics: line.lyrics.substring(idx)
-        }
-        result.push(line2)
-        change = true
-      } else {
-        result.push(line)
-      }
-    }, [])
-    return !change ? lines : this.chopLinesInHalf(lines)
   }
 }
