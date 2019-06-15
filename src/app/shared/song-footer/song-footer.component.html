@@ -1,1 +1,6 @@
-<div class="song-footer">{{ title | titlecase }}</div>
+<div class="song-footer">
+  {{ title | titlecase }}
+  <ng-container *ngIf="fontSize">
+    <span class="font-size">font {{ fontSize }}</span>
+  </ng-container>
+</div>

@@ -8,4 +8,5 @@ import { Component, Input } from '@angular/core'
 
 export class SongFooterComponent {
   @Input() title: string
+  @Input() fontSize: number
 }
