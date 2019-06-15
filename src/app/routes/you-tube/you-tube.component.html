@@ -1,11 +1,11 @@
+<app-bible-verse [bible]="song.bible"></app-bible-verse>
+
 <div class="links">
   <a [routerLink]="'/song/' + song.id">Song</a>
   <a routerLink="/list">Song List</a>
 </div>
 
 <div class="song-title">{{ song.title }}</div>
-
-<div class="bible-verse">{{ bible }}</div>
 
 <div class="you-tube-wrapper">
   <iframe width="800" height="450" [src]="'https://www.youtube.com/embed/' + song.youTube | safe" frameborder="0"

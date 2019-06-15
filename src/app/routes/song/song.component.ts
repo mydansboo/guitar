@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core'
 import { find, transform } from 'lodash'
 import { indicesOf } from '../../utils/utils'
-import { HttpClient } from '@angular/common/http'
 import { songs } from '../songs/songs'
 import { ActivatedRoute } from '@angular/router'
 
@@ -32,13 +31,12 @@ interface Chunk {
 
 export class SongComponent implements OnInit {
 
-  bible: string
   song: Song
   chunks: Array<Chunk>
   mode = localStorage.getItem('mode') || 'scroll'
   chunkNo = 0
 
-  constructor(private http: HttpClient, private route: ActivatedRoute) {}
+  constructor(private route: ActivatedRoute) {}
 
   ngOnInit() {
     this.route.paramMap.subscribe(params => {
@@ -74,13 +72,6 @@ export class SongComponent implements OnInit {
     this.song = song
     console.log(this.song)
     this.setChunks()
-    this.setBible()
-  }
-
-  private setBible() {
-    this.http.get('https://bible-api.com/' + this.song.bible).subscribe((res: any) => {
-      this.bible = res.text + ' ' + res.reference.toUpperCase()
-    })
   }
 
   private setChunks() {

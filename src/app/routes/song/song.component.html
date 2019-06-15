@@ -1,3 +1,5 @@
+<app-bible-verse [bible]="song.bible"></app-bible-verse>
+
 <div class="links">
 
   <ng-container *ngIf="mode !== 'scroll'"><a (click)="setMode('scroll')">Scroll</a></ng-container>
@@ -7,8 +9,6 @@
 </div>
 
 <div class="song-title">{{ song.title }}</div>
-
-<div class="bible-verse">{{ bible }}</div>
 
 <ng-container *ngIf="mode === 'scroll'">
   <div class="song-wrapper-scroll">

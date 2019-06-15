@@ -7,7 +7,9 @@ import { HttpClientModule } from '@angular/common/http'
 import { SongListComponent } from './routes/song-list/song-list.component';
 import { YouTubeComponent } from './routes/you-tube/you-tube.component';
 import { SafePipe } from './pipes/safe.pipe';
-import { ExcerptPipe } from './pipes/excerpt.pipe'
+import { ExcerptPipe } from './pipes/excerpt.pipe';
+import { BibleVerseComponent } from './shared/bible-verse/bible-verse.component';
+import { CapitalisePipe } from './pipes/capitalise.pipe'
 
 @NgModule({
   declarations: [
@@ -16,7 +18,9 @@ import { ExcerptPipe } from './pipes/excerpt.pipe'
     SongListComponent,
     YouTubeComponent,
     SafePipe,
-    ExcerptPipe
+    ExcerptPipe,
+    BibleVerseComponent,
+    CapitalisePipe
   ],
   imports: [
     BrowserModule,
