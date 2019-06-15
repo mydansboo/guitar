@@ -25,7 +25,7 @@
   <div class="song-wrapper-scroll">
     <ng-container *ngFor="let chunk of chunks">
       <div class="chunk" [ngClass]="chunk.type">
-        <div class="chunk-badge">{{ chunk.type }}</div>
+        <div class="chunk-badge">{{ chunk.type }}{{ chunk.number === 1 && chunk.count === 1 ? '' : ' ' + chunk.number }}</div>
         <ng-container *ngFor="let line of chunk.lines">
           <div class="line">
             <pre class="chords" [style.fontSize.px]="modes.scroll.fontSize">{{ line.chords }}</pre>

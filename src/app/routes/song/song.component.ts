@@ -118,7 +118,7 @@ export class SongComponent implements OnInit {
 
   private getChunks() {
     const {verses, choruses, bridges, order} = this.song
-    const lines = order.map(o => {
+    const chunks = order.map(o => {
       const what = o[0]
       const idx = parseInt(o[1], 10)
       if (what === 'v') {
@@ -146,7 +146,7 @@ export class SongComponent implements OnInit {
         }
       }
     })
-    return lines
+    return chunks
   }
 
   private chopLinesOnSymbol(lines) {
