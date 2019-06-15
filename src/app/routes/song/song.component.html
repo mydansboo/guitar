@@ -1,10 +1,18 @@
 <app-bible-verse [bible]="song.bible"></app-bible-verse>
 
 <app-links>
-  <ng-container *ngIf="mode !== 'scroll'"><a href="javascript: void(0)" (click)="setMode('scroll')">Scroll</a></ng-container>
-  <ng-container *ngIf="mode !== 'slides'"><a href="javascript: void(0)" (click)="setMode('slides')">Slides</a></ng-container>
-  <ng-container *ngIf="song.youTube"><a [routerLink]="'/youtube/' + song.id">YouTube</a></ng-container>
-  <a routerLink="/list">List</a>
+  <ng-container *ngIf="mode !== 'scroll'">
+    <a href="javascript: void(0)" (click)="setMode('scroll')">
+      <i class="fa fa-arrows-h fa-2x" aria-hidden="true"></i>
+    </a>
+  </ng-container>
+  <ng-container *ngIf="mode !== 'slides'">
+    <a href="javascript: void(0)" (click)="setMode('slides')">
+      <i class="fa fa-arrows-v fa-2x" aria-hidden="true"></i>
+    </a>
+  </ng-container>
+  <ng-container *ngIf="song.youTube"><a [routerLink]="'/youtube/' + song.id"><i class="fa fa-youtube fa-2x" aria-hidden="true"></i></a></ng-container>
+  <a routerLink="/list"><i class="fa fa-list fa-2x" aria-hidden="true"></i></a>
 </app-links>
 
 <ng-container *ngIf="mode === 'scroll'">
@@ -14,8 +22,8 @@
         <div class="chunk-badge">{{ chunk.type }}</div>
         <ng-container *ngFor="let line of chunk.lines">
           <div class="line">
-            <pre class="chords">{{ line.chords }}</pre>
-            <pre class="lyrics">{{ line.lyrics }}</pre>
+            <pre class="chords" [style.fontSize.px]="modes.scroll.fontSize">{{ line.chords }}</pre>
+            <pre class="lyrics" [style.fontSize.px]="modes.scroll.fontSize">{{ line.lyrics }}</pre>
           </div>
         </ng-container>
       </div>
@@ -24,14 +32,14 @@
 </ng-container>
 
 <ng-container *ngIf="mode === 'slides'">
-  
+
   <div class="song-wrapper-slides">
     <div class="chunk-wrapper">
       <div class="chunk" [ngClass]="chunks[chunkNo].type">
         <ng-container *ngFor="let line of chunks[chunkNo].lines">
           <div class="line">
-            <pre class="chords">{{ line.chords }}</pre>
-            <pre class="lyrics">{{ line.lyrics }}</pre>
+            <pre class="chords" [style.fontSize.px]="modes.slides.fontSize">{{ line.chords }}</pre>
+            <pre class="lyrics" [style.fontSize.px]="modes.slides.fontSize">{{ line.lyrics }}</pre>
           </div>
         </ng-container>
       </div>

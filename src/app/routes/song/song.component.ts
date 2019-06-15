@@ -35,6 +35,14 @@ export class SongComponent implements OnInit {
   chunks: Array<Chunk>
   mode = localStorage.getItem('mode') || 'scroll'
   chunkNo = 0
+  modes = {
+    scroll: {
+      fontSize: 20
+    },
+    slides: {
+      fontSize: 20
+    }
+  }
 
   constructor(private route: ActivatedRoute) {}
 

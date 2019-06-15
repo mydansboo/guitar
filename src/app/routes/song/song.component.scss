@@ -3,14 +3,12 @@
 
 .chords {
   color: darken(#F77000, 20%);
-  font-size: 20px;
   font-family: monospace;
 }
 
 .lyrics {
   margin-top: -5px;
   color: darken(#376C9F, 10%);
-  font-size: 20px;
   font-family: monospace;
 }
 
@@ -45,6 +43,7 @@ pre {
   }
 
   .chunk-badge {
+    margin-right: -7px;
     float: right;
     background-color: #CCC;
     font-size: 14px;
