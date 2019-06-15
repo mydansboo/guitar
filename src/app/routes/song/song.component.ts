@@ -3,6 +3,7 @@ import { find, transform } from 'lodash'
 import { indicesOf } from '../../utils/utils'
 import { songs } from '../songs/songs'
 import { ActivatedRoute } from '@angular/router'
+import { LocalStorageService } from '../../services/local-storage.service'
 
 const MAX_LINE_LENGTH = 150
 
@@ -35,22 +36,16 @@ export class SongComponent implements OnInit {
   chunks: Array<Chunk>
   mode = localStorage.getItem('mode') || 'scroll'
   chunkNo = 0
-  modes = {
-    scroll: {
-      fontSize: 20
-    },
-    slides: {
-      fontSize: 20
-    }
-  }
+  modes
 
-  constructor(private route: ActivatedRoute) {}
+  constructor(private route: ActivatedRoute, private localStorageService: LocalStorageService) {}
 
   ngOnInit() {
     this.route.paramMap.subscribe(params => {
       const id = parseInt(params.get('id'), 10)
       const song = find(songs, {id})
       this.setSong(song)
+      this.modes = this.loadSongModes()
     })
   }
 
@@ -61,11 +56,32 @@ export class SongComponent implements OnInit {
   }
 
   incrementFontSize() {
-    this.modes[this.mode].fontSize ++
+    if (this.modes[this.mode].fontSize < 50) {
+      this.modes[this.mode].fontSize++
+      this.saveSongModes()
+    }
   }
 
   decrementFontSize() {
-    this.modes[this.mode].fontSize --
+    if (this.modes[this.mode].fontSize > 10) {
+      this.modes[this.mode].fontSize--
+      this.saveSongModes()
+    }
+  }
+
+  private loadSongModes() {
+    return this.localStorageService.getItem('song-' + this.song.id + '-modes') || {
+      scroll: {
+        fontSize: 20
+      },
+      slides: {
+        fontSize: 20
+      }
+    }
+  }
+
+  private saveSongModes() {
+    this.localStorageService.setItem('song-' + this.song.id + '-modes', this.modes)
   }
 
   prev() {
