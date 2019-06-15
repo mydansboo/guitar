@@ -42,12 +42,14 @@
   <div class="song-wrapper-slides">
     <div class="chunk-wrapper">
       <div class="chunk" [ngClass]="chunks[chunkNo].type">
-        <ng-container *ngFor="let line of chunks[chunkNo].lines">
-          <div class="line">
-            <pre class="chords" [style.fontSize.px]="modes.slides.fontSize">{{ line.chords }}</pre>
-            <pre class="lyrics" [style.fontSize.px]="modes.slides.fontSize">{{ line.lyrics }}</pre>
-          </div>
-        </ng-container>
+        <div class="chunk-inner">
+          <ng-container *ngFor="let line of chunks[chunkNo].lines">
+            <div class="line">
+              <pre class="chords" [style.fontSize.px]="modes.slides.fontSize">{{ line.chords }}</pre>
+              <pre class="lyrics" [style.fontSize.px]="modes.slides.fontSize">{{ line.lyrics }}</pre>
+            </div>
+          </ng-container>
+        </div>
       </div>
     </div>
 

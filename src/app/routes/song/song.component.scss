@@ -90,12 +90,20 @@ pre {
   }
 
   .chunk {
-    margin-top: 20px;
+    max-width: 90%;
+    max-height: 50vh;
+    margin-top: 2vh;
     background-color: #fafafa;
     border-radius: 5px;
     padding: 10px 20px;
     display: inline-block;
     text-align: left;
+    border: 1px solid #CCC;
+  }
+
+  .chunk-inner {
+    max-height: 37vh;
+    overflow: hidden;
   }
 
   .chunk-selectors {
