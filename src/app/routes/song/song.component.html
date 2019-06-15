@@ -8,8 +8,6 @@
   <a routerLink="/list">Song List</a>
 </div>
 
-<div class="song-title">{{ song.title }}</div>
-
 <ng-container *ngIf="mode === 'scroll'">
   <div class="song-wrapper-scroll">
     <ng-container *ngFor="let chunk of chunks">
@@ -69,3 +67,5 @@
     </div>
   </div>
 </ng-container>
+
+<app-song-footer [title]="song.title"></app-song-footer>

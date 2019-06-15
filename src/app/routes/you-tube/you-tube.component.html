@@ -5,9 +5,9 @@
   <a routerLink="/list">Song List</a>
 </div>
 
-<div class="song-title">{{ song.title }}</div>
-
 <div class="you-tube-wrapper">
   <iframe width="800" height="450" [src]="'https://www.youtube.com/embed/' + song.youTube | safe" frameborder="0"
           allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 </div>
+
+<app-song-footer [title]="song.title"></app-song-footer>

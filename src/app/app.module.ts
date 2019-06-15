@@ -4,12 +4,13 @@ import { AppRoutingModule } from './app-routing.module'
 import { AppComponent } from './app.component'
 import { SongComponent } from './routes/song/song.component'
 import { HttpClientModule } from '@angular/common/http'
-import { SongListComponent } from './routes/song-list/song-list.component';
-import { YouTubeComponent } from './routes/you-tube/you-tube.component';
-import { SafePipe } from './pipes/safe.pipe';
-import { ExcerptPipe } from './pipes/excerpt.pipe';
-import { BibleVerseComponent } from './shared/bible-verse/bible-verse.component';
+import { SongListComponent } from './routes/song-list/song-list.component'
+import { YouTubeComponent } from './routes/you-tube/you-tube.component'
+import { SafePipe } from './pipes/safe.pipe'
+import { ExcerptPipe } from './pipes/excerpt.pipe'
+import { BibleVerseComponent } from './shared/bible-verse/bible-verse.component'
 import { CapitalisePipe } from './pipes/capitalise.pipe'
+import { SongFooterComponent } from './shared/song-footer/song-footer.component'
 
 @NgModule({
   declarations: [
@@ -20,7 +21,8 @@ import { CapitalisePipe } from './pipes/capitalise.pipe'
     SafePipe,
     ExcerptPipe,
     BibleVerseComponent,
-    CapitalisePipe
+    CapitalisePipe,
+    SongFooterComponent
   ],
   imports: [
     BrowserModule,
