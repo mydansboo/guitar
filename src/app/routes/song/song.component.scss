@@ -14,6 +14,7 @@
 
 pre {
   margin: 0;
+  overflow-x: hidden;
 }
 
 .song-wrapper-scroll {
@@ -43,10 +44,11 @@ pre {
   }
 
   .chunk-badge {
-    margin-right: -7px;
+    margin-top: -23px;
+    margin-right: 70px;
     float: right;
     background-color: #CCC;
-    font-size: 14px;
+    font-size: 15px;
     color: #FFF;
     padding: 0 5px 2px;
     border-radius: 5px;
