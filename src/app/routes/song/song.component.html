@@ -11,6 +11,7 @@
   <div class="song-wrapper-scroll">
     <ng-container *ngFor="let chunk of chunks">
       <div class="chunk" [ngClass]="chunk.type">
+        <div class="chunk-badge">{{ chunk.type }}</div>
         <ng-container *ngFor="let line of chunk.lines">
           <div class="line">
             <pre class="chords">{{ line.chords }}</pre>

@@ -9,7 +9,7 @@
 
 .lyrics {
   margin-top: -5px;
-  color: #376C9F;
+  color: darken(#376C9F, 10%);
   font-size: 20px;
   font-family: monospace;
 }
@@ -42,6 +42,15 @@ pre {
   .chunk.bridge {
     background-color: #fafafa;
     // background-color: lighten(#B0CDE3, 10%);
+  }
+
+  .chunk-badge {
+    float: right;
+    background-color: #B0CDE3;
+    font-size: 14px;
+    color: #FFF;
+    padding: 0 5px 2px;
+    border-radius: 5px;
   }
 }
 
