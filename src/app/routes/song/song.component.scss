@@ -55,54 +55,87 @@ pre {
 }
 
 .song-wrapper-next {
-  margin-top: 100px;
-  padding-left: 90px;
-  padding-right: 90px;
+  margin-top: 20px;
+  padding-left: 20px;
+  padding-right: 20px;
 
-  table {
-    table-layout: fixed;
-    width: 100%;
+  //table {
+  //  table-layout: fixed;
+  //  width: 100%;
+  //
+  //  .left {
+  //    border-top-left-radius: 7px;
+  //    border-bottom-left-radius: 7px;
+  //  }
+  //
+  //  .right {
+  //    border-top-right-radius: 7px;
+  //    border-bottom-right-radius: 7px;
+  //  }
+  //
+  //  .direction {
+  //    background-color: darken(#B0CDE2, 10%);
+  //    width: 4%;
+  //    text-align: center;
+  //    cursor: pointer;
+  //    color: #FFF;
+  //  }
+  //
+  //  .direction:hover {
+  //    background-color: #B0CDE2;
+  //  }
+  //
+  //  .direction.disabled {
+  //    background-color: #999;
+  //    cursor: not-allowed;
+  //  }
+  //
+  //  .middle {
+  //    width: 92%;
+  //  }
+  //}
 
-    .left {
-      border-top-left-radius: 7px;
-      border-bottom-left-radius: 7px;
-    }
+  .direction {
+    position: absolute;
+    top: 40%;
+    cursor: pointer;
+    color: darken(#B0CDE2, 10%);
+  }
 
-    .right {
-      border-top-right-radius: 7px;
-      border-bottom-right-radius: 7px;
-    }
+  .direction:hover {
+    color: #B0CDE2;
+  }
 
-    .direction {
-      background-color: darken(#B0CDE2, 10%);
-      width: 4%;
-      text-align: center;
-      cursor: pointer;
-      color: #FFF;
-    }
 
-    .direction:hover {
-      background-color: #B0CDE2;
-    }
+  .direction.disabled {
+    color: #999;
+    cursor: not-allowed;
+  }
 
-    .direction.disabled {
-      background-color: #999;
-      cursor: not-allowed;
-    }
+  .left {
+    left: 20px;
+  }
 
-    .middle {
-      width: 92%;
-    }
+  .right {
+    right: 20px;
+  }
+
+  .chunk-wrapper {
+    text-align: center;
   }
 
   .chunk {
-    background-color: #EEE;
-    padding: 20px 30px 25px;
+    margin-top: 30px;
+    background-color: #fafafa;
+    border-radius: 5px;
+    padding: 10px 20px;
+    display: inline-block;
+    text-align: left;
   }
 
   .chunk-selectors {
     position: absolute;
-    bottom: 64px;
+    bottom: ($footerHeight + 20) + unquote("px");
     left: 30%;
     cursor: pointer;
     width: 25%;
@@ -116,20 +149,26 @@ pre {
     left: 52%;
   }
 
-  .chunk-selector:nth-child(even) {
-    background-color: #FFF;
+  .chunk-selector {
+    padding-right: 20px;
   }
 
-  .chunk-selector:nth-child(odd) {
+  .chunk-selector:nth-child(even) {
     background-color: #EEE;
   }
 
-  .chunk-selector:hover {
+  .chunk-selector:nth-child(odd) {
     background-color: #DDD;
+  }
+
+  .chunk-selector:hover {
+    background-color: #555;
+    color: #FFF;
   }
 
   .chunk-selector.active {
     background-color: #B0CDE2;
+    color: #000;
   }
 
   .chunk-type, .chunk-taster {

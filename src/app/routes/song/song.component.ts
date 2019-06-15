@@ -119,7 +119,12 @@ export class SongComponent implements OnInit {
 
   private chopLinesOnFullstops(lines) {
     lines = transform(lines, (result, line) => {
-      let idxs = indicesOf(line.lyrics, '. ').map(i => i + 2)
+      let idxs
+      idxs = indicesOf(line.lyrics, '. ').map(i => i + 2)
+      idxs = idxs.map(idx => {
+        while (line.lyrics.charAt(idx - 1) !== ' ' || line.chords.charAt(idx - 1) !== ' ') {idx++}
+        return idx
+      })
       if (idxs.length) {
         if (idxs[idxs.length - 1] === line.lyrics.length) {idxs.pop()}
         if (idxs.length) {

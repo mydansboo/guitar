@@ -25,30 +25,35 @@
 
 <ng-container *ngIf="mode === 'next'">
   <div class="song-wrapper-next">
-    <table>
-      <tr>
-        <td class="left direction" (click)="prev()" [ngClass]="{disabled: chunkNo === 0}">
-          <i class="fa fa-chevron-circle-left fa-3x" aria-hidden="true"></i>
-        </td>
-        <td class="middle">
-          <div class="chunk" [ngClass]="chunks[chunkNo].type">
-            <ng-container *ngFor="let line of chunks[chunkNo].lines">
-              <div class="line">
-                <pre class="chords">{{ line.chords }}</pre>
-                <pre class="lyrics">{{ line.lyrics }}</pre>
-              </div>
-            </ng-container>
+    <!--        <td class="left direction" (click)="prev()" [ngClass]="{disabled: chunkNo === 0}">-->
+    <!--          <i class="fa fa-chevron-circle-left fa-3x" aria-hidden="true"></i>-->
+    <!--        </td>-->
+    <div class="chunk-wrapper">
+      <div class="chunk" [ngClass]="chunks[chunkNo].type">
+        <ng-container *ngFor="let line of chunks[chunkNo].lines">
+          <div class="line">
+            <pre class="chords">{{ line.chords }}</pre>
+            <pre class="lyrics">{{ line.lyrics }}</pre>
           </div>
-        </td>
-        <td class="right direction" (click)="next()" [ngClass]="{disabled: chunkNo === chunks.length - 1}">
-          <i class="fa fa-chevron-circle-right fa-3x" aria-hidden="true"></i>
-        </td>
-      </tr>
-    </table>
+        </ng-container>
+      </div>
+    </div>
+    <!--        <td class="right direction" (click)="next()" [ngClass]="{disabled: chunkNo === chunks.length - 1}">-->
+    <!--          <i class="fa fa-chevron-circle-right fa-3x" aria-hidden="true"></i>-->
+    <!--        </td>-->
+
+    <div class="left direction" (click)="prev()" [ngClass]="{disabled: chunkNo === 0}">
+      <i class="fa fa-chevron-circle-left fa-4x" aria-hidden="true"></i>
+    </div>
+
+    <div class="right direction" (click)="next()" [ngClass]="{disabled: chunkNo === chunks.length - 1}">
+      <i class="fa fa-chevron-circle-right fa-4x" aria-hidden="true"></i>
+    </div>
+
     <div class="chunk-selectors chunk-selectors-1">
       <ng-container *ngFor="let chunk of chunks; index as i">
         <ng-container *ngIf="i < chunks.length / 2">
-          <div class="chunk-selector" (click)="setChunk(i)" [ngClass]="{active: i === chunkNo}">
+          <div class="chunk-selector ellipsis" (click)="setChunk(i)" [ngClass]="{active: i === chunkNo}">
             <div class="chunk-type">{{ chunk.type }}</div>
             <div class="chunk-taster">{{ chunk.lines[0].lyrics | excerpt }}</div>
           </div>
@@ -58,7 +63,7 @@
     <div class="chunk-selectors chunk-selectors-2">
       <ng-container *ngFor="let chunk of chunks; index as i">
         <ng-container *ngIf="i >= chunks.length / 2">
-          <div class="chunk-selector" (click)="setChunk(i)" [ngClass]="{active: i === chunkNo}">
+          <div class="chunk-selector ellipsis" (click)="setChunk(i)" [ngClass]="{active: i === chunkNo}">
             <div class="chunk-type">{{ chunk.type }}</div>
             <div class="chunk-taster">{{ chunk.lines[0].lyrics | excerpt }}</div>
           </div>
