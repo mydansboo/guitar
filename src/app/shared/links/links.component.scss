@@ -1,5 +1,7 @@
+@import "../../../globals";
+
 .links {
   position:fixed;
   right: 0;
-  bottom: 35px;
+  bottom: ($footerHeight + 1) + unquote("px");
 }

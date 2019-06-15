@@ -1,4 +1,5 @@
 @import '../../shared/links/anchors';
+@import '../../../globals';
 
 .chords {
   color: rebeccapurple;
@@ -18,15 +19,20 @@ pre {
 }
 
 .song-wrapper-scroll {
-  margin-top: 70px;
-  padding-left: 90px;
-  padding-right: 90px;
+  margin-top: 20px;
+  padding-left: 20px;
+  padding-right: 20px;
+  margin-bottom: ($footerHeight + 20) + unquote("px");
 
   .chunk {
     padding: 10px 100px;
     margin-left: -100px;
     margin-right: -100px;
     border-bottom: 1px solid #CCC;
+  }
+
+  .chunk.verse {
+    background-color: yellow;
   }
 
   .chunk.chorus {
