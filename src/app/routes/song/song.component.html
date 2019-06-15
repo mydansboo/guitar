@@ -3,7 +3,7 @@
 <app-links>
   <ng-container *ngIf="mode !== 'scroll'"><a href="javascript: void(0)" (click)="setMode('scroll')">Scroll</a></ng-container>
   <ng-container *ngIf="mode !== 'slides'"><a href="javascript: void(0)" (click)="setMode('slides')">Slides</a></ng-container>
-  <a [routerLink]="'/youtube/' + song.id">YouTube</a>
+  <ng-container *ngIf="song.youTube"><a [routerLink]="'/youtube/' + song.id">YouTube</a></ng-container>
   <a routerLink="/list">List</a>
 </app-links>
 
