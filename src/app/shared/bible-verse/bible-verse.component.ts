@@ -11,12 +11,18 @@ export class BibleVerseComponent implements OnInit {
 
   @Input() bible
   verse: string
+  ref: string
+  translation: { abbr: string, name: string } = {}
 
   constructor(private http: HttpClient) {}
 
   ngOnInit() {
     this.http.get('https://bible-api.com/' + this.bible).subscribe((res: any) => {
-      this.verse = res.text + ' ' + res.reference.toUpperCase()
+      console.log(res)
+      this.verse = res.text
+      this.ref = res.reference.toUpperCase()
+      this.translation.abbr = res.translation_id.toUpperCase()
+      this.translation.name = res.translation_name
     })
   }
 }
