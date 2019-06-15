@@ -1,6 +1,12 @@
 <app-bible-verse [bible]="song.bible"></app-bible-verse>
 
 <app-links>
+  <a href="javascript: void(0)" (click)="incrementFontSize()">
+    <i class="fa fa-plus-circle fa-2x" aria-hidden="true"></i>
+  </a>
+  <a href="javascript: void(0)" (click)="decrementFontSize()">
+    <i class="fa fa-minus-circle fa-2x" aria-hidden="true"></i>
+  </a>
   <ng-container *ngIf="mode !== 'scroll'">
     <a href="javascript: void(0)" (click)="setMode('scroll')">
       <i class="fa fa-arrows-h fa-2x" aria-hidden="true"></i>

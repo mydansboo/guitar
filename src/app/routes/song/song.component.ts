@@ -60,6 +60,14 @@ export class SongComponent implements OnInit {
     localStorage.setItem('mode', mode)
   }
 
+  incrementFontSize() {
+    this.modes[this.mode].fontSize ++
+  }
+
+  decrementFontSize() {
+    this.modes[this.mode].fontSize --
+  }
+
   prev() {
     if (this.chunkNo > 0) {
       this.chunkNo--
