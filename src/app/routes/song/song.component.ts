@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core'
 import { find, intersection, transform } from 'lodash'
-import { indicesOf } from '../../utils/utils'
+import { indicesOf, getMatches } from '../../utils/utils'
 import { songs } from '../songs/songs'
 import { ActivatedRoute } from '@angular/router'
 import { LocalStorageService } from '../../services/local-storage.service'
@@ -28,8 +28,13 @@ export class SongComponent implements OnInit {
   private static tidyLine(line) {
     line.chords = line.chords.trimRight()
     line.lyrics = line.lyrics.trimRight()
-    if (line.chords === '') line.chords = ' '
-    if (line.lyrics === '') line.lyrics = ' '
+    line.chords += ' '
+    line.lyrics += ' '
+    const regex = /([a-zA-Z0-9#]+)/g
+    const matches = getMatches(line.chords, regex)
+    matches.forEach(match => {
+      line.chords = line.chords.replace(new RegExp(`${match} `), `<span class="chord chord-orig-${match}">${match}</span> `)
+    })
     return line
   }
 
@@ -67,7 +72,7 @@ export class SongComponent implements OnInit {
   }
 
   decrementFontSize() {
-    if (this.modes[this.mode].fontSize > 10) {
+    if (this.modes[this.mode].fontSize > 20) {
       this.modes[this.mode].fontSize--
       this.saveSongModes()
     }

@@ -8,3 +8,13 @@ export const indicesOf = (str, chars) => {
   }
   return indices
 }
+
+export const getMatches = (str, regex) => {
+  const matches = []
+  let match = regex.exec(str)
+  while (match != null) {
+    matches.push(match[1])
+    match = regex.exec(str)
+  }
+  return matches
+}

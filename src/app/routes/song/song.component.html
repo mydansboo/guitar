@@ -21,7 +21,7 @@
         <div class="chunk-badge">{{ chunk.type }}{{ chunk.number === 1 && chunk.count === 1 ? '' : ' ' + chunk.number }}</div>
         <ng-container *ngFor="let line of chunk.lines">
           <div class="line">
-            <ng-container *ngIf="showChords"><pre class="chords" [style.fontSize.px]="modes.scroll.fontSize">{{ line.chords }}</pre></ng-container>
+            <ng-container *ngIf="showChords"><pre class="chords" [style.fontSize.px]="modes.scroll.fontSize" [innerHTML]="line.chords"></pre></ng-container>
             <pre class="lyrics" [style.fontSize.px]="modes.scroll.fontSize">{{ line.lyrics }}</pre>
           </div>
         </ng-container>
@@ -38,7 +38,7 @@
         <div class="chunk-inner">
           <ng-container *ngFor="let line of chunks[chunkNo].lines">
             <div class="line">
-              <ng-container *ngIf="showChords"><pre class="chords" [style.fontSize.px]="modes.slides.fontSize">{{ line.chords }}</pre></ng-container>
+              <ng-container *ngIf="showChords"><pre class="chords" [style.fontSize.px]="modes.slides.fontSize" [innerHTML]="line.chords"></pre></ng-container>
               <pre class="lyrics" [style.fontSize.px]="modes.slides.fontSize">{{ line.lyrics }}</pre>
             </div>
           </ng-container>

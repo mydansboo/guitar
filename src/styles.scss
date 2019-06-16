@@ -30,3 +30,15 @@ body::-webkit-scrollbar-thumb
   overflow: hidden;
   text-overflow: ellipsis;
 }
+
+$chordMarginSize: 5px;
+
+.chord {
+  padding-left: $chordMarginSize;
+  padding-right: $chordMarginSize;
+  margin-left: -$chordMarginSize;
+  margin-right: -$chordMarginSize;
+  border-radius: 5px;
+  background-color: lighten(#3D4C57, 20%);
+  color: #FFF;
+}
