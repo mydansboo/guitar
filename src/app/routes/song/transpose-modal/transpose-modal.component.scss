@@ -1,7 +1,97 @@
-.close {
-  outline: none;
+// .close {
+//   outline: none;
+// }
+
+// .modal-header {
+//   background-color: #EEE;
+// }
+
+.guitar-neck-wrapper {
+  text-align: center;
+
+  .guitar-neck-outer {
+    display: inline-block;
+  }
+
+  .guitar-neck-inner {
+    display: inline-block;
+    vertical-align: bottom;
+    border-bottom: 2px solid #000;
+
+    table {
+      border-top: 5px solid #000;
+      border-left: 2px solid #000;
+      border-right: 2px solid #000;
+
+      td {
+
+        &:first-child {
+          border-left: none;
+        }
+
+        &:last-child {
+          border-right: none;
+        }
+
+        border-left: 3px solid #BEB7B9;
+        border-right: 3px solid #BEB7B9;
+
+        width: 10%;
+        background-color: #493235;
+        text-align: center;
+        padding: 10px 5px;
+      }
+
+      tr.one {
+        td {
+          // padding-bottom: 5px;
+          border-bottom: 1px solid #C9C9CB;
+        }
+      }
+
+      tr.two {
+        td {
+          // padding-top: 5px;
+          border-bottom: none;
+        }
+      }
+    }
+  }
 }
 
-.modal-header {
-  background-color: #EEE;
+.key-badge {
+  position: relative;
+  left: 27px;
+  margin: 0 auto;
+  color: #000;
+  background-color: #BF8C6E;
+  border-radius: 90%;
+  width: 42px;
+  height: 42px;
+  vertical-align: middle;
+  cursor: pointer;
+  border: 2px solid darken(#BF8C6E, 30%);
+  font-size: 24px;
+  font-family: monospace;
+
+  &:hover {
+    border: 2px solid #BF8C6E;
+    background-color: darken(#BF8C6E, 30%);
+    // color: #FFF;
+  }
+
+  &.active {
+    border: 2px solid #BF8C6E;
+    background-color: darken(#BF8C6E, 30%);
+    color: #FFF;
+  }
+}
+
+.guitar-neck-controls {
+  background-color: #222;
+  color: #FFF;
+}
+
+.col.button {
+  cursor: pointer;
 }

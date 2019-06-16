@@ -10,20 +10,29 @@ export class TransposeModalComponent implements OnInit {
 
   @ViewChild('okButton') okButton
   @Input() key: string
-  @Output() cancel = new EventEmitter<boolean>()
-  @Output() ok = new EventEmitter<string>()
+  @Output() done = new EventEmitter<string>()
+
+  origKey: string
 
   constructor() {}
 
   ngOnInit() {
-    this.okButton.nativeElement.focus()
-  }
-
-  onCancel() {
-    this.cancel.emit(true)
+    this.origKey = this.key
   }
 
   onOk() {
-    this.ok.emit('Z')
+    this.done.emit(this.key)
+  }
+
+  onCancel() {
+    this.done.emit(this.origKey)
+  }
+
+  onEasiest() {
+    console.log('onEasiest')
+  }
+
+  setKey(key) {
+    this.key = key
   }
 }

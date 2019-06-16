@@ -44,12 +44,14 @@ export class SongComponent implements OnInit {
   }
 
   changeKey() {
-    const modal = this.modalService.open(TransposeModalComponent, {centered: true, backdrop: 'static', keyboard: false})
-    modal.componentInstance.key = this.key
-    modal.componentInstance.cancel.subscribe(() => {
-      modal.close()
+    const modal = this.modalService.open(TransposeModalComponent, {
+      centered: true,
+      backdrop: 'static',
+      keyboard: false,
+      windowClass: 'transpose-modal'
     })
-    modal.componentInstance.ok.subscribe((key) => {
+    modal.componentInstance.key = this.key
+    modal.componentInstance.done.subscribe((key) => {
       console.log('new key is', key)
       modal.close()
     })
