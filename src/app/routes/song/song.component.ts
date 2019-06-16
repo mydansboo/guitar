@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core'
-import { find, intersection, transform } from 'lodash'
+import { cloneDeep, find, intersection, transform } from 'lodash'
 import { indicesOf, getMatches } from '../../utils/utils'
 import { songs } from '../songs/songs'
 import { ActivatedRoute } from '@angular/router'
@@ -24,19 +24,7 @@ export class SongComponent implements OnInit {
   showChords = true
   chunkNo = 0
   modes: Modes
-
-  private static tidyLine(line) {
-    line.chords = line.chords.trimRight()
-    line.lyrics = line.lyrics.trimRight()
-    line.chords += ' '
-    line.lyrics += ' '
-    const regex = /([a-zA-Z0-9#]+)/g
-    const matches = getMatches(line.chords, regex)
-    matches.forEach(match => {
-      line.chords = line.chords.replace(new RegExp(`${match} `), `<span class="chord chord-orig-${match}">${match}</span> `)
-    })
-    return line
-  }
+  key: string
 
   constructor(private route: ActivatedRoute, private localStorageService: LocalStorageService) {}
 
@@ -173,12 +161,27 @@ export class SongComponent implements OnInit {
           if (chords.startsWith(SPLITTER)) chords = chords.substring(1)
           if (lyrics.startsWith(SPLITTER)) lyrics = lyrics.substring(1)
           const choppedLine = {chords, lyrics}
-          result.push(SongComponent.tidyLine(choppedLine))
+          result.push(this.tidyLine(choppedLine))
         }
       } else {
-        result.push(SongComponent.tidyLine(line))
+        result.push(this.tidyLine(line))
       }
     }, [])
     return lines
+  }
+
+  private tidyLine(line) {
+    line = cloneDeep(line)
+    line.chords = line.chords.trimRight()
+    line.lyrics = line.lyrics.trimRight()
+    line.chords = line.chords + ' '
+    line.lyrics = line.lyrics + ' '
+    const regex = /([a-zA-Z0-9#]+)/g
+    const matches = getMatches(line.chords, regex)
+    if (!this.key) this.key = matches[0]
+    matches.forEach(match => {
+      line.chords = line.chords.replace(new RegExp(`${match} `), `<span class="chord chord-orig-${match}">${match}</span> `)
+    })
+    return line
   }
 }
