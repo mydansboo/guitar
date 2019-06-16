@@ -3,6 +3,7 @@
 <app-links>
   <a (click)="incrementFontSize()"><i class="fa fa-plus-circle fa-2x" aria-hidden="true"></i></a>
   <a (click)="decrementFontSize()"><i class="fa fa-minus-circle fa-2x" aria-hidden="true"></i></a>
+  <a (click)="changeKey()"><i class="fa fa-key fa-2x" aria-hidden="true"></i></a>
   <a (click)="toggleChords()">
     <ng-container *ngIf="showChords"><i class="fa fa-eye fa-2x" aria-hidden="true"></i></ng-container>
     <ng-container *ngIf="!showChords"><i class="fa fa-eye-slash fa-2x" aria-hidden="true"></i></ng-container>

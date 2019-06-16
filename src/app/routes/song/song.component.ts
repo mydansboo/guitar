@@ -41,6 +41,10 @@ export class SongComponent implements OnInit {
     })
   }
 
+  changeKey() {
+    console.log('change key')
+  }
+
   setMode(mode) {
     this.chunkNo = 0
     this.mode = mode
