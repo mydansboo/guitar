@@ -6,6 +6,7 @@ import { ActivatedRoute } from '@angular/router'
 import { LocalStorageService } from '../../services/local-storage.service'
 import { Chunk } from 'src/app/interfaces/chunk'
 import { Song } from 'src/app/interfaces/song'
+import { Modes } from 'src/app/interfaces/modes'
 
 const SPLITTER = '@'
 
@@ -20,19 +21,25 @@ export class SongComponent implements OnInit {
   song: Song
   chunks: Array<Chunk>
   mode = localStorage.getItem('mode') || 'scroll'
+  showChords = true
   chunkNo = 0
-  modes: {
-    scroll: {
-      fontSize: number
-    },
-    slides: {
-      fontSize: number
-    }
+  modes: Modes
+
+  private static tidyLine(line) {
+    line.chords = line.chords.trimRight()
+    line.lyrics = line.lyrics.trimRight()
+    if (line.chords === '') line.chords = ' '
+    if (line.lyrics === '') line.lyrics = ' '
+    return line
   }
 
   constructor(private route: ActivatedRoute, private localStorageService: LocalStorageService) {}
 
   ngOnInit() {
+
+    const showChords = this.localStorageService.getItem('show-chords')
+    if (showChords != null) this.showChords = showChords
+
     this.route.paramMap.subscribe(params => {
       const id = parseInt(params.get('id'), 10)
       const song = find(songs, {id})
@@ -45,6 +52,11 @@ export class SongComponent implements OnInit {
     this.chunkNo = 0
     this.mode = mode
     localStorage.setItem('mode', mode)
+  }
+
+  toggleChords() {
+    this.showChords = !this.showChords
+    this.localStorageService.setItem('show-chords', this.showChords)
   }
 
   incrementFontSize() {
@@ -156,17 +168,11 @@ export class SongComponent implements OnInit {
           let lyrics = line.lyrics.substring(idx1, idx2)
           if (chords.startsWith(SPLITTER)) chords = chords.substring(1)
           if (lyrics.startsWith(SPLITTER)) lyrics = lyrics.substring(1)
-          const splitLine = {
-            chords: chords.trimRight(),
-            lyrics: lyrics.trimRight()
-          }
-          result.push(splitLine)
+          const choppedLine = {chords, lyrics}
+          result.push(SongComponent.tidyLine(choppedLine))
         }
       } else {
-        result.push({
-          chords: line.chords.trimRight(),
-          lyrics: line.lyrics.trimRight()
-        })
+        result.push(SongComponent.tidyLine(line))
       }
     }, [])
     return lines

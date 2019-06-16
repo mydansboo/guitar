@@ -3,6 +3,11 @@
 <app-links>
   <a (click)="incrementFontSize()"><i class="fa fa-plus-circle fa-2x" aria-hidden="true"></i></a>
   <a (click)="decrementFontSize()"><i class="fa fa-minus-circle fa-2x" aria-hidden="true"></i></a>
+  <a (click)="toggleChords()">
+    <ng-container *ngIf="showChords"><i class="fa fa-eye fa-2x" aria-hidden="true"></i></ng-container>
+    <ng-container *ngIf="!showChords"><i class="fa fa-eye-slash fa-2x" aria-hidden="true"></i></ng-container>
+  </a>
+
   <ng-container *ngIf="mode !== 'scroll'"><a (click)="setMode('scroll')"><i class="fa fa-arrows-h fa-2x" aria-hidden="true"></i></a></ng-container>
   <ng-container *ngIf="mode !== 'slides'"><a (click)="setMode('slides')"><i class="fa fa-arrows-v fa-2x" aria-hidden="true"></i></a></ng-container>
   <ng-container *ngIf="song.youTube"><a [routerLink]="'/youtube/' + song.id"><i class="fa fa-youtube fa-2x" aria-hidden="true"></i></a></ng-container>
@@ -12,11 +17,11 @@
 <ng-container *ngIf="mode === 'scroll'">
   <div class="song-wrapper-scroll">
     <ng-container *ngFor="let chunk of chunks">
-      <div class="chunk" [ngClass]="chunk.type">
+      <div class="chunk" [ngClass]="chunk.type + (showChords ? '' : ' hide-chords')">
         <div class="chunk-badge">{{ chunk.type }}{{ chunk.number === 1 && chunk.count === 1 ? '' : ' ' + chunk.number }}</div>
         <ng-container *ngFor="let line of chunk.lines">
           <div class="line">
-            <pre class="chords" [style.fontSize.px]="modes.scroll.fontSize">{{ line.chords }}</pre>
+            <ng-container *ngIf="showChords"><pre class="chords" [style.fontSize.px]="modes.scroll.fontSize">{{ line.chords }}</pre></ng-container>
             <pre class="lyrics" [style.fontSize.px]="modes.scroll.fontSize">{{ line.lyrics }}</pre>
           </div>
         </ng-container>
@@ -33,7 +38,7 @@
         <div class="chunk-inner">
           <ng-container *ngFor="let line of chunks[chunkNo].lines">
             <div class="line">
-              <pre class="chords" [style.fontSize.px]="modes.slides.fontSize">{{ line.chords }}</pre>
+              <ng-container *ngIf="showChords"><pre class="chords" [style.fontSize.px]="modes.slides.fontSize">{{ line.chords }}</pre></ng-container>
               <pre class="lyrics" [style.fontSize.px]="modes.slides.fontSize">{{ line.lyrics }}</pre>
             </div>
           </ng-container>
