@@ -117,7 +117,6 @@ export class SongComponent implements OnInit {
       return chunk
     })
     this.chunks = chunks
-    console.log('chunks', chunks)
   }
 
   private getChunks() {
