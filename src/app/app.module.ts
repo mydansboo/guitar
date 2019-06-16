@@ -10,8 +10,10 @@ import { SafePipe } from './pipes/safe.pipe'
 import { ExcerptPipe } from './pipes/excerpt.pipe'
 import { BibleVerseComponent } from './shared/bible-verse/bible-verse.component'
 import { CapitalisePipe } from './pipes/capitalise.pipe'
-import { SongFooterComponent } from './shared/song-footer/song-footer.component';
+import { SongFooterComponent } from './shared/song-footer/song-footer.component'
 import { LinksComponent } from './shared/links/links.component'
+import { TransposeModalComponent } from './routes/song/transpose-modal/transpose-modal.component'
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap'
 
 @NgModule({
   declarations: [
@@ -24,14 +26,19 @@ import { LinksComponent } from './shared/links/links.component'
     BibleVerseComponent,
     CapitalisePipe,
     SongFooterComponent,
-    LinksComponent
+    LinksComponent,
+    TransposeModalComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    HttpClientModule
+    HttpClientModule,
+    NgbModule
   ],
   providers: [],
+  entryComponents: [
+    TransposeModalComponent
+  ],
   bootstrap: [AppComponent]
 })
 

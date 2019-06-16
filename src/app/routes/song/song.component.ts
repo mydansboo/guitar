@@ -1,12 +1,14 @@
 import { Component, OnInit } from '@angular/core'
 import { cloneDeep, find, intersection, transform } from 'lodash'
-import { indicesOf, getMatches } from '../../utils/utils'
+import { getMatches, indicesOf } from '../../utils/utils'
 import { songs } from '../songs/songs'
 import { ActivatedRoute } from '@angular/router'
 import { LocalStorageService } from '../../services/local-storage.service'
 import { Chunk } from 'src/app/interfaces/chunk'
 import { Song } from 'src/app/interfaces/song'
 import { Modes } from 'src/app/interfaces/modes'
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap'
+import { TransposeModalComponent } from './transpose-modal/transpose-modal.component'
 
 const SPLITTER = '@'
 
@@ -26,7 +28,7 @@ export class SongComponent implements OnInit {
   modes: Modes
   key: string
 
-  constructor(private route: ActivatedRoute, private localStorageService: LocalStorageService) {}
+  constructor(private route: ActivatedRoute, private localStorageService: LocalStorageService, private modalService: NgbModal) {}
 
   ngOnInit() {
 
@@ -42,7 +44,15 @@ export class SongComponent implements OnInit {
   }
 
   changeKey() {
-    console.log('change key')
+    const modal = this.modalService.open(TransposeModalComponent, {centered: true, backdrop: 'static', keyboard: false})
+    modal.componentInstance.key = this.key
+    modal.componentInstance.cancel.subscribe(() => {
+      modal.close()
+    })
+    modal.componentInstance.ok.subscribe((key) => {
+      console.log('new key is', key)
+      modal.close()
+    })
   }
 
   setMode(mode) {
