@@ -15,7 +15,6 @@ const SPLITTER = '@'
   styleUrls: ['./song.component.scss']
 })
 
-
 export class SongComponent implements OnInit {
 
   song: Song
@@ -153,17 +152,21 @@ export class SongComponent implements OnInit {
         for (let i = 0; i < idxs.length - 1; i++) {
           const idx1 = idxs[i]
           const idx2 = idxs[i + 1]
-          const chords = line.chords.substring(idx1, idx2)
-          const lyrics = line.lyrics.substring(idx1, idx2)
+          let chords = line.chords.substring(idx1, idx2)
+          let lyrics = line.lyrics.substring(idx1, idx2)
+          if (chords.startsWith(SPLITTER)) chords = chords.substring(1)
+          if (lyrics.startsWith(SPLITTER)) lyrics = lyrics.substring(1)
           const splitLine = {
-            ...line,
-            chords: chords.startsWith(SPLITTER) ? chords.substring(1) : chords,
-            lyrics: lyrics.startsWith(SPLITTER) ? lyrics.substring(1) : lyrics
+            chords: chords.trimRight(),
+            lyrics: lyrics.trimRight()
           }
           result.push(splitLine)
         }
       } else {
-        result.push(line)
+        result.push({
+          chords: line.chords.trimRight(),
+          lyrics: line.lyrics.trimRight()
+        })
       }
     }, [])
     return lines

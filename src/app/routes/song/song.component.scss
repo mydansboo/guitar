@@ -45,13 +45,13 @@ pre {
 
   .chunk-badge {
     margin-top: -23px;
-    margin-right: 75px;
-    float: right;
     background-color: #666;
     font-size: 15px;
     color: #FFF;
     padding: 0 5px 2px;
     border-radius: 5px;
+    position: absolute;
+    right: 75px;
   }
 }
 
