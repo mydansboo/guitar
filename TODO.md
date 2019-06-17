@@ -8,3 +8,6 @@ hide key button in toolbar when hide chords, move key button to top of menu?
 
 hide toolbar and font word (click footer to reopen?) - hide on full screen?
 full screen button in menu
+improve wrapping - https://stackoverflow.com/questions/56634938/how-to-make-2-lines-of-text-wrap-together - CSS regions polyfill
+
+
