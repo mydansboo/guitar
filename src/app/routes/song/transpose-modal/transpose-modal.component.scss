@@ -90,8 +90,17 @@
 .guitar-neck-controls {
   background-color: #222;
   color: #FFF;
+  border-left: 2px solid #000;
+  border-right: 2px solid #000;
+  border-bottom: 2px solid #000;
 }
 
 .col.button {
   cursor: pointer;
+  background-color: darken(#493235, 5%);
+  border-left: 2px solid #000;
+
+  &:hover {
+    background-color: lighten(#493235, 5%);
+  }
 }

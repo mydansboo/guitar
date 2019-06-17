@@ -51,9 +51,9 @@ export class SongComponent implements OnInit {
       windowClass: 'transpose-modal'
     })
     modal.componentInstance.key = this.key
-    modal.componentInstance.done.subscribe((key) => {
-      console.log('new key is', key)
-      modal.close()
+    modal.componentInstance.change.subscribe((change) => {
+      if (change.key) this.key = change.key
+      if (change.close) modal.close()
     })
   }
 
