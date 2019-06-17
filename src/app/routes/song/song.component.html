@@ -60,7 +60,7 @@
         <ng-container *ngIf="i < chunks.length / 2">
           <div class="chunk-selector ellipsis" (click)="setChunk(i)" [ngClass]="{active: i === chunkNo}">
             <div class="chunk-type">{{ chunk.type }}{{ chunk.number === 1 && chunk.count === 1 ? '' : ' ' + chunk.number }}</div>
-            <div class="chunk-taster">{{ chunk.lines[0].lyrics | excerpt }}</div>
+            <div class="chunk-taster" [title]="chunk.lines[0].lyrics | excerpt">{{ chunk.lines[0].lyrics | excerpt }}</div>
           </div>
         </ng-container>
       </ng-container>
@@ -70,7 +70,7 @@
         <ng-container *ngIf="i >= chunks.length / 2">
           <div class="chunk-selector ellipsis" (click)="setChunk(i)" [ngClass]="{active: i === chunkNo}">
             <div class="chunk-type">{{ chunk.type }}{{ chunk.number === 1 && chunk.count === 1 ? '' : ' ' + chunk.number }}</div>
-            <div class="chunk-taster">{{ chunk.lines[0].lyrics | excerpt }}</div>
+            <div class="chunk-taster" [title]="chunk.lines[0].lyrics | excerpt">{{ chunk.lines[0].lyrics | excerpt }}</div>
           </div>
         </ng-container>
       </ng-container>

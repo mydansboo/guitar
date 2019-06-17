@@ -69,14 +69,14 @@ export class SongComponent implements OnInit {
   }
 
   incrementFontSize() {
-    if (this.modes[this.mode].fontSize < 60) {
+    if (this.modes[this.mode].fontSize < 50) {
       this.modes[this.mode].fontSize++
       this.saveSongModes()
     }
   }
 
   decrementFontSize() {
-    if (this.modes[this.mode].fontSize > 20) {
+    if (this.modes[this.mode].fontSize > 10) {
       this.modes[this.mode].fontSize--
       this.saveSongModes()
     }

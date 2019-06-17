@@ -2,7 +2,7 @@ body {
   overflow-x: hidden;
   overflow-y: scroll;
   user-select: none;
-  min-width: 980px;
+  min-width: 780px; // best for 800px
 }
 
 body::-webkit-scrollbar-track {

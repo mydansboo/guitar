@@ -71,7 +71,7 @@ pre {
 
   .direction {
     position: absolute;
-    top: 40%;
+    bottom: 10%;
     cursor: pointer;
     color: darken(#B0CDE2, 10%);
   }
@@ -87,11 +87,11 @@ pre {
   }
 
   .left {
-    left: 20px;
+    left: 12%;
   }
 
   .right {
-    right: 20px;
+    right: 12%;
   }
 
   .chunk-wrapper {
@@ -99,7 +99,7 @@ pre {
   }
 
   .chunk {
-    max-width: 85%;
+    max-width: 100%;
     margin-top: 2vh;
     background-color: #fafafa;
     border-radius: 5px;
@@ -110,7 +110,7 @@ pre {
   }
 
   .chunk-inner {
-    max-height: 45vh;
+    max-height: 50vh;
     overflow: hidden;
   }
 
