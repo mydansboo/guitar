@@ -7,7 +7,8 @@ import { Component, Input } from '@angular/core'
 })
 
 export class SongFooterComponent {
-  @Input() key: string
-  @Input() title: string
   @Input() fontSize: number
+  @Input() key: string
+  @Input() showChords: boolean
+  @Input() title: string
 }

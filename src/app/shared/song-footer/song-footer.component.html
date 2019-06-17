@@ -1,6 +1,6 @@
 <div class="song-footer">
   <span>{{ title | titlecase }}</span>
-  <ng-container *ngIf="key">
+  <ng-container *ngIf="key && showChords">
     <span class="key"> in {{ key }}</span>
   </ng-container>
   <ng-container *ngIf="fontSize">
