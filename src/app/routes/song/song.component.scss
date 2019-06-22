@@ -72,8 +72,10 @@ pre {
   .prev-chord {
     position: absolute;
     background-color: lighten(#3D4C57, 30%);
-    margin-top: -10px;
+    font-family: monospace;
+    line-height: 1.2;
     margin-left: -20px;
+    margin-top: -10px;
   }
 
   .direction {

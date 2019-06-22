@@ -50,7 +50,7 @@
             <div class="chunk-inner">
               <ng-container *ngFor="let line of transpose.chunks[chunkNo].lines; index as i">
                 <ng-container *ngIf="i === 0 && chunkNo > 0 && line.chords[0] === ' '">
-                  <span class="prev-chord chord">{{ transpose.chunks[chunkNo - 1].lastChord }}</span>
+                  <span class="prev-chord chord" [style.fontSize.px]="modes.slides.fontSize" >{{ transpose.chunks[chunkNo - 1].lastChord }}</span>
                 </ng-container>
                 <div class="line">
                   <ng-container *ngIf="showChords">
