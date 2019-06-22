@@ -1,14 +1,21 @@
-<app-bible-verse [bible]="song.bible"></app-bible-verse>
+<ng-container *ngIf="song">
 
-<app-links>
-  <a [routerLink]="'/song/' + song.id"><i class="fa fa-music fa-2x" aria-hidden="true"></i></a>
-  <a routerLink="/list"><i class="fa fa-list fa-2x" aria-hidden="true"></i></a>
-</app-links>
+  <div class="animated fadeIn">
 
-<div class="you-tube-wrapper">
-  <!--suppress HtmlDeprecatedAttribute -->
-  <iframe width="800" height="450" [src]="'https://www.youtube.com/embed/' + song.youTube | safe" frameborder="0"
-          allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-</div>
+    <app-bible-verse [bible]="song.bible"></app-bible-verse>
 
-<app-song-footer [title]="song.title"></app-song-footer>
+    <app-links>
+      <a [routerLink]="'/song/' + song.id"><i class="fa fa-music fa-2x" aria-hidden="true"></i></a>
+      <a routerLink="/list"><i class="fa fa-list fa-2x" aria-hidden="true"></i></a>
+    </app-links>
+
+    <div class="you-tube-wrapper">
+      <!--suppress HtmlDeprecatedAttribute -->
+      <iframe width="800" height="450" [src]="'https://www.youtube.com/embed/' + song.youTube | safe" frameborder="0"
+              allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+    </div>
+
+    <app-song-footer [title]="song.title"></app-song-footer>
+
+  </div>
+</ng-container>

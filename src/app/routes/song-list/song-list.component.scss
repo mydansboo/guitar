@@ -27,4 +27,15 @@
   .song-error {
     text-decoration: line-through;
   }
+
+  .you-tube-link {
+    cursor: pointer;
+    color: #555;
+    padding-left: 25px;
+    outline: none;
+
+    &:hover {
+      color: #000;
+    }
+  }
 }

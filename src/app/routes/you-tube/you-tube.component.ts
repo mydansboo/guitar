@@ -1,8 +1,10 @@
 import { Component, OnInit } from '@angular/core'
 import { rawSongs } from '../../songs/raw-songs'
-import { ActivatedRoute } from '@angular/router'
+import { ActivatedRoute, Router } from '@angular/router'
 import { find } from 'lodash'
 import { HttpClient } from '@angular/common/http'
+
+declare let localforage: any
 
 @Component({
   selector: 'app-you-tube',
@@ -13,21 +15,21 @@ import { HttpClient } from '@angular/common/http'
 export class YouTubeComponent implements OnInit {
 
   song: any
-  bible: string
 
-  constructor(private http: HttpClient, private route: ActivatedRoute) { }
+  constructor(private http: HttpClient, private route: ActivatedRoute, private router: Router) { }
 
   ngOnInit() {
     this.route.paramMap.subscribe(params => {
       const id = parseInt(params.get('id'), 10)
+      localforage.getItem('songs', (err, songs) => {
+        this.song = find(songs, {id})
+        if (!this.song) {
+          this.router.navigateByUrl('/list').then()
+        } else if (!this.song.youTube) {
+          this.router.navigateByUrl('/song/' + id).then()
+        }
+      })
       this.song = find(rawSongs, {id})
-      this.setBible()
-    })
-  }
-
-  private setBible() {
-    this.http.get('https://bible-api.com/' + this.song.bible).subscribe((res: any) => {
-      this.bible = res.text + ' ' + res.reference.toUpperCase()
     })
   }
 }
