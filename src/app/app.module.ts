@@ -14,7 +14,7 @@ import { SongFooterComponent } from './shared/song-footer/song-footer.component'
 import { LinksComponent } from './shared/links/links.component'
 import { TransposeModalComponent } from './routes/song/transpose-modal/transpose-modal.component'
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap'
-import { songLoader } from './initialisers/song-loader';
+import { songLoader } from './initialisers/song-loader'
 import { SongErrorComponent } from './routes/song-error/song-error.component'
 
 @NgModule({

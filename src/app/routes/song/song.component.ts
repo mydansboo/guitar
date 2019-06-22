@@ -60,7 +60,7 @@ export class SongComponent implements OnInit {
   }
 
   @HostListener('window:resize', ['$event'])
-  onResize(evt) {
+  onResize(/* evt */) {
     // @ts-ignore
     this.isFullScreen = window.fullScreen || (window.innerWidth === screen.width && window.innerHeight === screen.height)
   }
@@ -69,7 +69,7 @@ export class SongComponent implements OnInit {
     const el = document.documentElement
 
     if (el.requestFullscreen) {
-      el.requestFullscreen()
+      el.requestFullscreen().then()
       // @ts-ignore
     } else if (el.mozRequestFullScreen) { /* Firefox */
       // @ts-ignore
@@ -87,7 +87,7 @@ export class SongComponent implements OnInit {
 
   exitFullScreen() {
     if (document.exitFullscreen) {
-      document.exitFullscreen()
+      document.exitFullscreen().then()
       // @ts-ignore
     } else if (document.mozCancelFullScreen) {
       // @ts-ignore
