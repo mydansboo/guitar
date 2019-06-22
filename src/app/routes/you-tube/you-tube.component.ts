@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core'
-import { rawSongs } from '../../songs/raw-songs'
 import { ActivatedRoute, Router } from '@angular/router'
 import { find } from 'lodash'
 import { HttpClient } from '@angular/common/http'
@@ -29,7 +28,6 @@ export class YouTubeComponent implements OnInit {
           this.router.navigateByUrl('/song/' + id).then()
         }
       })
-      this.song = find(rawSongs, {id})
     })
   }
 }
