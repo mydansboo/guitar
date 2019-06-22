@@ -12,12 +12,26 @@
 }
 
 .font-size {
-  float: right;
+  position: absolute;
+  right: 10px;
   font-size: 14px;
-  margin-right: 10px;
-  margin-top: 4px;
+  bottom: 7px;
 }
 
 .key {
   color: #B0CDE2;
+}
+
+.menu-button {
+  color: #B0CDE2;
+  cursor: pointer;
+  position: absolute;
+  right: 5px;
+  font-size: 14px;
+  bottom: 2px;
+  padding: 5px 10px;
+
+  &:hover {
+    color: #FFF;
+  }
 }

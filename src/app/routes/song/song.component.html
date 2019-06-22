@@ -1,81 +1,95 @@
-<app-bible-verse [bible]="song.bible"></app-bible-verse>
+<ng-container *ngIf="song && !song.errors">
 
-<app-links>
-  <a (click)="incrementFontSize()"><i class="fa fa-plus-circle fa-2x" aria-hidden="true"></i></a>
-  <a (click)="decrementFontSize()"><i class="fa fa-minus-circle fa-2x" aria-hidden="true"></i></a>
-  <a (click)="changeKey()"><i class="fa fa-key fa-2x" aria-hidden="true"></i></a>
-  <a (click)="toggleChords()">
-    <ng-container *ngIf="showChords"><i class="fa fa-eye fa-2x" aria-hidden="true"></i></ng-container>
-    <ng-container *ngIf="!showChords"><i class="fa fa-eye-slash fa-2x" aria-hidden="true"></i></ng-container>
-  </a>
+  <app-bible-verse [bible]="song.bible"></app-bible-verse>
 
-  <ng-container *ngIf="mode !== 'scroll'"><a (click)="setMode('scroll')"><i class="fa fa-arrows-h fa-2x" aria-hidden="true"></i></a></ng-container>
-  <ng-container *ngIf="mode !== 'slides'"><a (click)="setMode('slides')"><i class="fa fa-arrows-v fa-2x" aria-hidden="true"></i></a></ng-container>
-  <ng-container *ngIf="song.youTube"><a [routerLink]="'/youtube/' + song.id"><i class="fa fa-youtube fa-2x" aria-hidden="true"></i></a></ng-container>
-  <a routerLink="/list"><i class="fa fa-list fa-2x" aria-hidden="true"></i></a>
-</app-links>
+  <ng-container *ngIf="!hideStuff">
+    <app-links>
+      <ng-container *ngIf="showChords"><a (click)="changeKey()"><i class="fa fa-key fa-2x" aria-hidden="true"></i></a></ng-container>
+      <ng-container *ngIf="!isFullScreen"><a (click)="fullScreen()"><i class="fa fa-arrows-alt fa-2x" aria-hidden="true"></i></a></ng-container>
+      <ng-container *ngIf="isFullScreen"><a (click)="exitFullScreen()"><i class="fa fa-arrows-alt fa-2x" aria-hidden="true"></i></a></ng-container>
+      <a (click)="toggleHideStuff()"><i class="fa fa-bars fa-2x" aria-hidden="true"></i></a>
+      <a (click)="incrementFontSize()"><i class="fa fa-plus-circle fa-2x" aria-hidden="true"></i></a>
+      <a (click)="decrementFontSize()"><i class="fa fa-minus-circle fa-2x" aria-hidden="true"></i></a>
+      <a (click)="toggleChords()">
+        <ng-container *ngIf="showChords"><i class="fa fa-eye fa-2x" aria-hidden="true"></i></ng-container>
+        <ng-container *ngIf="!showChords"><i class="fa fa-eye-slash fa-2x" aria-hidden="true"></i></ng-container>
+      </a>
 
-<ng-container *ngIf="mode === 'scroll'">
-  <div class="song-wrapper-scroll">
-    <ng-container *ngFor="let chunk of chunks">
-      <div class="chunk" [ngClass]="chunk.type + (showChords ? '' : ' hide-chords')">
-        <div class="chunk-badge">{{ chunk.type }}{{ chunk.number === 1 && chunk.count === 1 ? '' : ' ' + chunk.number }}</div>
-        <ng-container *ngFor="let line of chunk.lines">
-          <div class="line">
-            <ng-container *ngIf="showChords"><pre class="chords" [style.fontSize.px]="modes.scroll.fontSize" [innerHTML]="line.chords"></pre></ng-container>
-            <pre class="lyrics" [style.fontSize.px]="modes.scroll.fontSize">{{ line.lyrics }}</pre>
-          </div>
-        </ng-container>
-      </div>
-    </ng-container>
-  </div>
-</ng-container>
+      <ng-container *ngIf="mode !== 'scroll'"><a (click)="setMode('scroll')"><i class="fa fa-arrows-h fa-2x" aria-hidden="true"></i></a></ng-container>
+      <ng-container *ngIf="mode !== 'slides'"><a (click)="setMode('slides')"><i class="fa fa-arrows-v fa-2x" aria-hidden="true"></i></a></ng-container>
+      <ng-container *ngIf="song.youTube"><a [routerLink]="'/youtube/' + song.id"><i class="fa fa-youtube fa-2x" aria-hidden="true"></i></a></ng-container>
+      <a routerLink="/list"><i class="fa fa-list fa-2x" aria-hidden="true"></i></a>
+    </app-links>
+  </ng-container>
 
-<ng-container *ngIf="mode === 'slides'">
-
-  <div class="song-wrapper-slides">
-    <div class="chunk-wrapper">
-      <div class="chunk" [ngClass]="chunks[chunkNo].type">
-        <div class="chunk-inner">
-          <ng-container *ngFor="let line of chunks[chunkNo].lines">
+  <ng-container *ngIf="mode === 'scroll'">
+    <div class="song-wrapper-scroll">
+      <ng-container *ngFor="let chunk of transpose.chunks">
+        <div class="chunk" [ngClass]="chunk.type + (showChords ? '' : ' hide-chords')">
+          <div class="chunk-badge">{{ chunk.type }}{{ chunk.number === 1 && chunk.count === 1 ? '' : ' ' + chunk.number }}</div>
+          <ng-container *ngFor="let line of chunk.lines">
             <div class="line">
-              <ng-container *ngIf="showChords"><pre class="chords" [style.fontSize.px]="modes.slides.fontSize" [innerHTML]="line.chords"></pre></ng-container>
-              <pre class="lyrics" [style.fontSize.px]="modes.slides.fontSize">{{ line.lyrics }}</pre>
+              <ng-container *ngIf="showChords">
+                <pre class="chords" [style.fontSize.px]="modes.scroll.fontSize" [innerHTML]="line.chords"></pre>
+              </ng-container>
+              <pre class="lyrics" [style.fontSize.px]="modes.scroll.fontSize">{{ line.lyrics }}</pre>
             </div>
           </ng-container>
         </div>
+      </ng-container>
+    </div>
+  </ng-container>
+
+  <ng-container *ngIf="mode === 'slides'">
+
+    <div class="song-wrapper-slides">
+      <div class="chunk-wrapper">
+        <div class="chunk" [ngClass]="transpose.chunks[chunkNo].type">
+          <div class="chunk-inner">
+            <ng-container *ngFor="let line of transpose.chunks[chunkNo].lines">
+              <div class="line">
+                <ng-container *ngIf="showChords">
+                  <pre class="chords" [style.fontSize.px]="modes.slides.fontSize" [innerHTML]="line.chords"></pre>
+                </ng-container>
+                <pre class="lyrics" [style.fontSize.px]="modes.slides.fontSize">{{ line.lyrics }}</pre>
+              </div>
+            </ng-container>
+          </div>
+        </div>
+      </div>
+
+      <div class="left direction" (click)="prev()" [ngClass]="{disabled: chunkNo === 0}">
+        <i class="fa fa-chevron-circle-left fa-4x" aria-hidden="true"></i>
+      </div>
+
+      <div class="right direction" (click)="slides()" [ngClass]="{disabled: chunkNo === transpose.chunks.length - 1}">
+        <i class="fa fa-chevron-circle-right fa-4x" aria-hidden="true"></i>
+      </div>
+
+      <div class="chunk-selectors chunk-selectors-1">
+        <ng-container *ngFor="let chunk of transpose.chunks; index as i">
+          <ng-container *ngIf="i < transpose.chunks.length / 2">
+            <div class="chunk-selector ellipsis" (click)="setChunk(i)" [ngClass]="{active: i === chunkNo}">
+              <div class="chunk-type">{{ chunk.type }}{{ chunk.number === 1 && chunk.count === 1 ? '' : ' ' + chunk.number }}</div>
+              <div class="chunk-taster" [title]="chunk.lines[0].lyrics | excerpt">{{ chunk.lines[0].lyrics | excerpt }}</div>
+            </div>
+          </ng-container>
+        </ng-container>
+      </div>
+      <div class="chunk-selectors chunk-selectors-2">
+        <ng-container *ngFor="let chunk of transpose.chunks; index as i">
+          <ng-container *ngIf="i >= transpose.chunks.length / 2">
+            <div class="chunk-selector ellipsis" (click)="setChunk(i)" [ngClass]="{active: i === chunkNo}">
+              <div class="chunk-type">{{ chunk.type }}{{ chunk.number === 1 && chunk.count === 1 ? '' : ' ' + chunk.number }}</div>
+              <div class="chunk-taster" [title]="chunk.lines[0].lyrics | excerpt">{{ chunk.lines[0].lyrics | excerpt }}</div>
+            </div>
+          </ng-container>
+        </ng-container>
       </div>
     </div>
+  </ng-container>
 
-    <div class="left direction" (click)="prev()" [ngClass]="{disabled: chunkNo === 0}">
-      <i class="fa fa-chevron-circle-left fa-4x" aria-hidden="true"></i>
-    </div>
+  <app-song-footer [title]="song.title" [fontSize]="mode === 'scroll' ? modes.scroll.fontSize : modes.slides.fontSize" [key]="key"
+                   [showChords]="showChords" [hideStuff]="hideStuff" (unhide)="toggleHideStuff()"></app-song-footer>
 
-    <div class="right direction" (click)="slides()" [ngClass]="{disabled: chunkNo === chunks.length - 1}">
-      <i class="fa fa-chevron-circle-right fa-4x" aria-hidden="true"></i>
-    </div>
-
-    <div class="chunk-selectors chunk-selectors-1">
-      <ng-container *ngFor="let chunk of chunks; index as i">
-        <ng-container *ngIf="i < chunks.length / 2">
-          <div class="chunk-selector ellipsis" (click)="setChunk(i)" [ngClass]="{active: i === chunkNo}">
-            <div class="chunk-type">{{ chunk.type }}{{ chunk.number === 1 && chunk.count === 1 ? '' : ' ' + chunk.number }}</div>
-            <div class="chunk-taster" [title]="chunk.lines[0].lyrics | excerpt">{{ chunk.lines[0].lyrics | excerpt }}</div>
-          </div>
-        </ng-container>
-      </ng-container>
-    </div>
-    <div class="chunk-selectors chunk-selectors-2">
-      <ng-container *ngFor="let chunk of chunks; index as i">
-        <ng-container *ngIf="i >= chunks.length / 2">
-          <div class="chunk-selector ellipsis" (click)="setChunk(i)" [ngClass]="{active: i === chunkNo}">
-            <div class="chunk-type">{{ chunk.type }}{{ chunk.number === 1 && chunk.count === 1 ? '' : ' ' + chunk.number }}</div>
-            <div class="chunk-taster" [title]="chunk.lines[0].lyrics | excerpt">{{ chunk.lines[0].lyrics | excerpt }}</div>
-          </div>
-        </ng-container>
-      </ng-container>
-    </div>
-  </div>
 </ng-container>
-
-<app-song-footer [title]="song.title" [fontSize]="mode === 'scroll' ? modes.scroll.fontSize : modes.slides.fontSize" [key]="key" [showChords]="showChords"></app-song-footer>

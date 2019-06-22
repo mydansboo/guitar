@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core'
-import { songs } from '../songs/songs'
+import { rawSongs } from '../../songs/raw-songs'
 import { ActivatedRoute } from '@angular/router'
 import { find } from 'lodash'
 import { HttpClient } from '@angular/common/http'
@@ -20,7 +20,7 @@ export class YouTubeComponent implements OnInit {
   ngOnInit() {
     this.route.paramMap.subscribe(params => {
       const id = parseInt(params.get('id'), 10)
-      this.song = find(songs, {id})
+      this.song = find(rawSongs, {id})
       this.setBible()
     })
   }

@@ -1,10 +1,55 @@
 <div class="song-list">
-  <div *ngFor="let song of songs">
-    <a [routerLink]="'/song/' + song.id">{{ song.title }}</a>
-    <ng-container *ngFor="let label of song.labels">
-      <span class="label">
-        <i class="fa fa-lg {{ label }}" aria-hidden="true"></i>
-      </span>
+
+  <table class="table">
+    <thead class="thead-blue">
+    <tr>
+      <th scope="col">Key</th>
+      <th scope="col">Diff</th>
+      <th scope="col">Title</th>
+      <th scope="col">Labels</th>
+    </tr>
+    </thead>
+    <tbody>
+    <ng-container *ngFor="let song of songs">
+
+      <ng-container *ngIf="!song.errors">
+        <tr>
+          <td>
+            {{ song.key }} <span *ngIf="song.key === song.origBaseChord" class="badge badge-secondary">default</span>
+          </td>
+          <td>
+            {{ song.transpose[song.key].score | number: '1.2-2' }}
+          </td>
+          <td>
+            <a [routerLink]="'/song/' + song.id">
+              <span>{{ song.title }}</span>
+            </a>
+          </td>
+          <td>
+            <ng-container *ngFor="let label of song.labels">
+              <span class="label">
+                <i class="fa fa-lg {{ label }}" aria-hidden="true"></i>
+              </span>
+            </ng-container>
+          </td>
+        </tr>
+      </ng-container>
+
+      <ng-container *ngIf="song.errors">
+        <tr>
+          <td></td>
+          <td></td>
+          <td>
+            <a [routerLink]="'/song-error/' + song.id">
+              <span class="song-error">{{ song.title }}</span>
+            </a>
+          </td>
+          <td></td>
+        </tr>
+      </ng-container>
+
     </ng-container>
-  </div>
+    </tbody>
+  </table>
+
 </div>

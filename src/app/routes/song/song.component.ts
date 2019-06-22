@@ -1,16 +1,14 @@
-import { Component, OnInit } from '@angular/core'
-import { cloneDeep, find, intersection, transform } from 'lodash'
-import { getMatches, indicesOf } from '../../utils/utils'
-import { songs } from '../songs/songs'
-import { ActivatedRoute } from '@angular/router'
+import { Component, HostListener, OnInit } from '@angular/core'
+import { find } from 'lodash'
+import { ActivatedRoute, Router } from '@angular/router'
 import { LocalStorageService } from '../../services/local-storage.service'
-import { Chunk } from 'src/app/interfaces/chunk'
-import { Song } from 'src/app/interfaces/song'
 import { Modes } from 'src/app/interfaces/modes'
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap'
 import { TransposeModalComponent } from './transpose-modal/transpose-modal.component'
+import { Song } from 'src/app/interfaces/song'
+import { Transpose } from 'src/app/interfaces/transpose'
 
-const SPLITTER = '@'
+declare let localforage: any
 
 @Component({
   selector: 'app-song',
@@ -21,14 +19,17 @@ const SPLITTER = '@'
 export class SongComponent implements OnInit {
 
   song: Song
-  chunks: Array<Chunk>
+  transpose: Transpose
+
   mode = localStorage.getItem('mode') || 'scroll'
   showChords = true
   chunkNo = 0
   modes: Modes
   key: string
+  isFullScreen = false
+  hideStuff = false
 
-  constructor(private route: ActivatedRoute, private localStorageService: LocalStorageService, private modalService: NgbModal) {}
+  constructor(private route: ActivatedRoute, private localStorageService: LocalStorageService, private modalService: NgbModal, private router: Router) {}
 
   ngOnInit() {
 
@@ -36,11 +37,70 @@ export class SongComponent implements OnInit {
     if (showChords != null) this.showChords = showChords
 
     this.route.paramMap.subscribe(params => {
+
       const id = parseInt(params.get('id'), 10)
-      const song = find(songs, {id})
-      this.setSong(song)
-      this.modes = this.loadSongModes()
+      localforage.getItem('songs', (err, songs) => {
+        this.song = find(songs, {id})
+        if (!this.song) {
+          this.router.navigateByUrl('/list').then()
+        } else if (this.song.errors) {
+          this.router.navigateByUrl('/song-error/' + id).then()
+        } else {
+          this.modes = this.loadSongModes()
+          const key = localStorage.getItem('song-' + this.song.id + '-key') || this.song.origBaseChord
+          this.transpose = this.song.transpose[key]
+          this.key = key
+        }
+      })
     })
+  }
+
+  toggleHideStuff() {
+    this.hideStuff = !this.hideStuff
+  }
+
+  @HostListener('window:resize', ['$event'])
+  onResize(evt) {
+    // @ts-ignore
+    this.isFullScreen = window.fullScreen || (window.innerWidth === screen.width && window.innerHeight === screen.height)
+  }
+
+  fullScreen() {
+    const el = document.documentElement
+
+    if (el.requestFullscreen) {
+      el.requestFullscreen()
+      // @ts-ignore
+    } else if (el.mozRequestFullScreen) { /* Firefox */
+      // @ts-ignore
+      el.mozRequestFullScreen()
+      // @ts-ignore
+    } else if (el.webkitRequestFullscreen) { /* Chrome, Safari & Opera */
+      // @ts-ignore
+      el.webkitRequestFullscreen()
+      // @ts-ignore
+    } else if (el.msRequestFullscreen) { /* IE/Edge */
+      // @ts-ignore
+      el.msRequestFullscreen()
+    }
+  }
+
+  exitFullScreen() {
+    if (document.exitFullscreen) {
+      document.exitFullscreen()
+      // @ts-ignore
+    } else if (document.mozCancelFullScreen) {
+      // @ts-ignore
+      document.mozCancelFullScreen()
+      // @ts-ignore
+    } else if (document.webkitExitFullscreen) {
+      // @ts-ignore
+      document.webkitExitFullscreen()
+      // @ts-ignore
+    } else if (document.msExitFullscreen) {
+      // @ts-ignore
+      document.msExitFullscreen()
+    }
   }
 
   changeKey() {
@@ -50,9 +110,16 @@ export class SongComponent implements OnInit {
       keyboard: false,
       windowClass: 'transpose-modal'
     })
+    modal.componentInstance.transpose = this.song.transpose
     modal.componentInstance.key = this.key
+    modal.componentInstance.defaultKey = this.song.origBaseChord
     modal.componentInstance.change.subscribe((change) => {
-      if (change.key) this.key = change.key
+      const key = change.key
+      if (key) {
+        this.transpose = this.song.transpose[key]
+        this.key = key
+        localStorage.setItem('song-' + this.song.id + '-key', key)
+      }
       if (change.close) modal.close()
     })
   }
@@ -104,100 +171,12 @@ export class SongComponent implements OnInit {
   }
 
   slides() {
-    if (this.chunkNo < this.chunks.length - 1) {
+    if (this.chunkNo < this.transpose.chunks.length - 1) {
       this.chunkNo++
     }
   }
 
   setChunk(chunk) {
     this.chunkNo = chunk
-  }
-
-  private setSong(song) {
-    this.song = song
-    this.setChunks()
-  }
-
-  private setChunks() {
-    let chunks
-    chunks = this.getChunks()
-    chunks = chunks.map((chunk) => {
-      chunk.lines = this.chopLinesOnSymbol(chunk.lines)
-      return chunk
-    })
-    this.chunks = chunks
-  }
-
-  private getChunks() {
-    const {verses, choruses, bridges, order} = this.song
-    const chunks = order.map(o => {
-      const what = o[0]
-      const idx = parseInt(o[1], 10)
-      if (what === 'v') {
-        return {
-          lines: [verses[idx]],
-          type: 'verse',
-          number: idx + 1,
-          count: verses.length
-        }
-      }
-      if (what === 'c') {
-        return {
-          lines: [choruses[idx]],
-          type: 'chorus',
-          number: idx + 1,
-          count: choruses.length
-        }
-      }
-      if (what === 'b') {
-        return {
-          lines: [bridges[idx]],
-          type: 'bridge',
-          number: idx + 1,
-          count: bridges.length
-        }
-      }
-    })
-    return chunks
-  }
-
-  private chopLinesOnSymbol(lines) {
-    lines = transform(lines, (result, line) => {
-      const idxs1 = indicesOf(line.chords, SPLITTER)
-      const idxs2 = indicesOf(line.lyrics, SPLITTER)
-      let idxs = intersection(idxs1, idxs2)
-      if (idxs.length) {
-        const lineLength = Math.max(line.lyrics.length, line.chords.length)
-        idxs = [0, ...idxs, lineLength]
-        for (let i = 0; i < idxs.length - 1; i++) {
-          const idx1 = idxs[i]
-          const idx2 = idxs[i + 1]
-          let chords = line.chords.substring(idx1, idx2)
-          let lyrics = line.lyrics.substring(idx1, idx2)
-          if (chords.startsWith(SPLITTER)) chords = chords.substring(1)
-          if (lyrics.startsWith(SPLITTER)) lyrics = lyrics.substring(1)
-          const choppedLine = {chords, lyrics}
-          result.push(this.tidyLine(choppedLine))
-        }
-      } else {
-        result.push(this.tidyLine(line))
-      }
-    }, [])
-    return lines
-  }
-
-  private tidyLine(line) {
-    line = cloneDeep(line)
-    line.chords = line.chords.trimRight()
-    line.lyrics = line.lyrics.trimRight()
-    line.chords = line.chords + ' '
-    line.lyrics = line.lyrics + ' '
-    const regex = /([a-zA-Z0-9#]+)/g
-    const matches = getMatches(line.chords, regex)
-    if (!this.key) this.key = matches[0]
-    matches.forEach(match => {
-      line.chords = line.chords.replace(new RegExp(`${match} `), `<span class="chord chord-orig-${match}">${match}</span> `)
-    })
-    return line
   }
 }

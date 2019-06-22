@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core'
+import { Component, EventEmitter, Input, Output } from '@angular/core'
 
 @Component({
   selector: 'app-song-footer',
@@ -11,4 +11,11 @@ export class SongFooterComponent {
   @Input() key: string
   @Input() showChords: boolean
   @Input() title: string
+  @Input() hideStuff: boolean = null
+
+  @Output() unhide = new EventEmitter<boolean>()
+
+  onUnhide() {
+    this.unhide.emit(true)
+  }
 }

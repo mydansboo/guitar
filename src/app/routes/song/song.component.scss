@@ -71,13 +71,13 @@ pre {
 
   .direction {
     position: absolute;
-    bottom: 10%;
+    bottom: 6%;
     cursor: pointer;
-    color: darken(#B0CDE2, 10%);
+    color: #678093;
   }
 
   .direction:hover {
-    color: #B0CDE2;
+    color: lighten(#678093, 10%);
   }
 
 

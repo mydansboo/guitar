@@ -1,0 +1,19 @@
+<ng-container *ngIf="song?.errors">
+
+  <div class="song-error">
+    <h4 class="title">
+      <span>
+        {{ song.errors.length }}
+        song error<span *ngIf="song.errors.length !== 1">s</span>
+      </span>
+    </h4>
+    <div class="error" *ngFor="let error of song.errors">{{ error.message | titlecase }}</div>
+  </div>
+
+  <app-links>
+    <a routerLink="/list"><i class="fa fa-list fa-2x" aria-hidden="true"></i></a>
+  </app-links>
+
+  <app-song-footer [title]="song.title"></app-song-footer>
+
+</ng-container>

@@ -4,6 +4,13 @@
     <span class="key"> in {{ key }}</span>
   </ng-container>
   <ng-container *ngIf="fontSize">
-    <span class="font-size">font {{ fontSize }}</span>
+    <ng-container *ngIf="hideStuff === false">
+      <span class="font-size">font {{ fontSize }}</span>
+    </ng-container>
+    <ng-container *ngIf="hideStuff === true">
+      <div class="menu-button" (click)="onUnhide()">
+        <i class="fa fa-bars fa-lg" aria-hidden="true"></i>
+      </div>
+    </ng-container>
   </ng-container>
 </div>

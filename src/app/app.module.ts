@@ -1,5 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser'
-import { NgModule } from '@angular/core'
+import { APP_INITIALIZER, NgModule } from '@angular/core'
 import { AppRoutingModule } from './app-routing.module'
 import { AppComponent } from './app.component'
 import { SongComponent } from './routes/song/song.component'
@@ -14,6 +14,8 @@ import { SongFooterComponent } from './shared/song-footer/song-footer.component'
 import { LinksComponent } from './shared/links/links.component'
 import { TransposeModalComponent } from './routes/song/transpose-modal/transpose-modal.component'
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap'
+import { songLoader } from './initialisers/song-loader';
+import { SongErrorComponent } from './routes/song-error/song-error.component'
 
 @NgModule({
   declarations: [
@@ -27,7 +29,8 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap'
     CapitalisePipe,
     SongFooterComponent,
     LinksComponent,
-    TransposeModalComponent
+    TransposeModalComponent,
+    SongErrorComponent
   ],
   imports: [
     BrowserModule,
@@ -35,7 +38,14 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap'
     HttpClientModule,
     NgbModule
   ],
-  providers: [],
+  providers: [
+    {
+      provide: APP_INITIALIZER,
+      useFactory: songLoader,
+      multi: true,
+      deps: []
+    }
+  ],
   entryComponents: [
     TransposeModalComponent
   ],
