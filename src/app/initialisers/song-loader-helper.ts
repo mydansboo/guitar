@@ -232,6 +232,7 @@ export class SongLoaderHelper {
     let firstChord = null
 
     const regex = /([a-zA-Z0-9#]+)/g
+    let lastChord
 
     chunks = cloneDeep(chunks)
 
@@ -241,6 +242,7 @@ export class SongLoaderHelper {
         chordCount += origChords.length
         origChords.forEach(origChord => {
           const newChord = this.getAdjustedChord(origChord, semitoneAdjust)
+          lastChord = newChord
           if (firstChord == null) firstChord = newChord
           const scoreData = this.getScoreData(newChord)
           score += scoreData.score
@@ -255,6 +257,7 @@ export class SongLoaderHelper {
         })
         return line
       })
+      chunk.lastChord = lastChord
       return chunk
     })
 

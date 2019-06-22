@@ -48,7 +48,10 @@
         <div class="chunk-wrapper">
           <div class="chunk" [ngClass]="transpose.chunks[chunkNo].type">
             <div class="chunk-inner">
-              <ng-container *ngFor="let line of transpose.chunks[chunkNo].lines">
+              <ng-container *ngFor="let line of transpose.chunks[chunkNo].lines; index as i">
+                <ng-container *ngIf="i === 0 && chunkNo > 0 && line.chords[0] === ' '">
+                  <span class="prev-chord chord">{{ transpose.chunks[chunkNo - 1].lastChord }}</span>
+                </ng-container>
                 <div class="line">
                   <ng-container *ngIf="showChords">
                     <pre class="chords" [style.fontSize.px]="modes.slides.fontSize" [innerHTML]="line.chords"></pre>

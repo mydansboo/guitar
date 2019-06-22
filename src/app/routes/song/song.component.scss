@@ -69,6 +69,13 @@ pre {
   padding-left: 25px;
   padding-right: 25px;
 
+  .prev-chord {
+    position: absolute;
+    background-color: lighten(#3D4C57, 30%);
+    margin-top: -10px;
+    margin-left: -20px;
+  }
+
   .direction {
     position: absolute;
     bottom: 6%;

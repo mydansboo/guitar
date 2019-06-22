@@ -1,4 +1,5 @@
 export interface Chunk {
   lines: Array<{ chords: string, lyrics: string }>,
-  type: string
+  type: string,
+  lastChord: string
 }
