@@ -1,7 +1,6 @@
 urgent
 ======
 
-chord at start for slides
 move left / right buttons down to bottom and wider %
 
 other
