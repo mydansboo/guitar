@@ -21,7 +21,7 @@ const CHORDS_SCORES = {
   score2: {
     name: 'medium',
     score: 2,
-    chords: ['A', 'Am', 'C', 'D', 'D7', 'E', 'G']
+    chords: ['A', 'Am', 'C', 'D', 'Dsus4', 'D7', 'E', 'G']
   },
   score3: {
     name: 'unknown',
