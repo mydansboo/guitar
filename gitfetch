@@ -5,5 +5,6 @@
 # crontab -l  view cron jobs
 # * * * * * /root/guitar/gitfetch
 
+cd /root/guitar
 git fetch -p
 git pull -r
