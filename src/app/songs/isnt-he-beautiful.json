@@ -6,16 +6,11 @@
   "labels": [],
   "verses": [
     {
-      "chords": "G         C          G          C         G               D  Em         Em7  C6          Am7   C    D7",
-      "lyrics": "Is n't He beautiful, beautiful, isn't He? Prince of peace,   Son of God,     Isn't He?"
-    },
-    {
-      "chords": "G        C          G          C         G           D   Em          Em7  C6       Am        C         G   C       G",
-      "lyrics": "Isn't He wonderful, wonderful, isn't He? Counsellor,   Almighty God,     isn't He,    isn't He, isn't He,    isn't He?"
+      "chords": "G        C          G          C         G               D  Em         Em7  C6       Am7  C  D7  @G        C          G          C         G          D   Em         Em7  C6       Am      C         G  C      G  C",
+      "lyrics": "Isn't He beautiful, beautiful, isn't He? Prince of peace,   Son of God,     Isn't He?            @Isn't He wonderful, wonderful, isn't He? Counsellor, Al-mighty God,     isn't He,  isn't He, isn't He, isn't He? "
     }
   ],
   "order": [
-    "v0",
-    "v1"
+    "v0"
   ]
 }
