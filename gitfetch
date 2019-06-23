@@ -1,6 +1,7 @@
 #!/bin/bash
 
 # On Ubuntu 18 Bionic Beaver put this file in /etc/cron.hourly
+# cp gitfetch /etc/cron.hourly/gitfetch
 
 cd /root/guitar
 git fetch -p
