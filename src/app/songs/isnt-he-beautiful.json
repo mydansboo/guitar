@@ -6,11 +6,16 @@
   "labels": [],
   "verses": [
     {
-      "chords": "G        C          G          C          @G               D  Em         Em7  C6       Am7  C  D7  @G        C          G          C          @G          D   Em         Em7  C6       Am      C         G  C      G  C",
-      "lyrics": "Isn't He beautiful, beautiful, isn't He?  @Prince of peace,   Son of God,     Isn't He?            @Isn't He wonderful, wonderful, isn't He?  @Counsellor, Al-mighty God,     isn't He,  isn't He, isn't He, isn't He? "
+      "chords": "G        C          G          C                         @G               D  Em         Em7  C6       Am7  C  D7     @G        C          G          C                         @G          D   Em         Em7  C6       Am      C         G  C      G  C",
+      "lyrics": "Isn't He beautiful, beautiful, isn't He?                 @Prince of peace,   Son of God,     Isn't He?               @Isn't He wonderful, wonderful, isn't He?                 @Counsellor, Al-mighty God,     isn't He,  isn't He, isn't He, isn't He? "
+    },
+    {
+      "chords": "G                    C          G          C             @G               D  Em         Em7  C6          Am7  C  D7  @G                    C          G          C             @G          D   Em         Em7  C6          Am        C            G   C        G   C",
+      "lyrics": "Yes you are (Yeshua) beautiful, beautiful, yes you are!  @Prince of peace,   Son of God,     yes you are!            @Yes you are (Yeshua) wonderful, wonderful, yes you are!  @Counsellor, Al-mighty God,     yes you are,  yes you are, yes you are, yes you are! "
     }
   ],
   "order": [
-    "v0"
+    "v0",
+    "v1"
   ]
 }
