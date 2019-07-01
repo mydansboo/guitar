@@ -6,7 +6,7 @@
   "labels": [],
   "verses": [
     {
-      "chords": "D                           A7  D   @                              A    @D                             A7   D  @A#      D                   A7  D  ",
+      "chords": "D                           A7  D   @                              A    @D                             A7   D  @A#      D        A7             D  ",
       "lyrics": "I must tell Jesus all of my tri-als @I cannot bear these burdens a-lone @In my distress He kindly will help me @He ever loves and cares for His own"
     },
     {
@@ -20,8 +20,8 @@
   ],
   "choruses": [
     {
-      "chords": "                               G      @         D                 A    @D                              A7   D    @A#        D              A7  D   ",
-      "lyrics": "I must tell Jesus! I must tell Jesus! @I cannot bear my burdens a-lone @I must tell Jesus! I must tell Je - sus! @Jesus can help me, Jesus a - lone"
+      "chords": "                               G      @         D                 A    @D                              A7   D    @A#        D       A7       D   ",
+      "lyrics": "I must tell Jesus! I must tell Jesus! @I cannot bear my burdens a-lone @I must tell Jesus! I must tell Je - sus! @Jesus can help me, Jesus a-lone"
     }
   ],
   "bridges": [
