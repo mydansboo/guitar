@@ -1,0 +1,42 @@
+{
+  "id": 5,
+  "title": "I must tell Jesus",
+  "bible": "1 Peter 5:7",
+  "youTube": "XMh2fK45Vhw",
+  "labels": [],
+  "verses": [
+    {
+      "chords": "D                           A7  D   @                              A    @D                             A7   D  @A#      D                   A7  D  ",
+      "lyrics": "I must tell Jesus all of my tri-als @I cannot bear these burdens a-lone @In my distress He kindly will help me @He ever loves and cares for His own"
+    },
+    {
+      "chords": "                            A7   D    @                            A      @D                            A7   D   @A#          D                A7  D  ",
+      "lyrics": "I must tell Jesus all of my trou-bles @He is a kind, compassionate friend @If I but ask Him, He will de-li - ver @Makes of my troubles quickly an  end"
+    },
+    {
+      "chords": "                           A7    D  @                             A   @D                             A7   D  @A#       D                 A7  D  ",
+      "lyrics": "O how the world to evil al-lures me @O how my heart is tempted to sin @I must tell Jesus and He will help me @Over the world the vict'ry to  win"
+    }
+  ],
+  "choruses": [
+    {
+      "chords": "                               G      @         D                 A    @D                              A7   D    @A#        D              A7  D   ",
+      "lyrics": "I must tell Jesus! I must tell Jesus! @I cannot bear my burdens a-lone @I must tell Jesus! I must tell Je - sus! @Jesus can help me, Jesus a - lone"
+    }
+  ],
+  "bridges": [
+    {
+      "chords": "                           A7    D  @                             A   @D                                A7  D   @A#          D            A7       D     ",
+      "lyrics": "Father alone will know all about it @Father alone will understand why @Cheer up my sisters, walk in the Spi-rit @We'll under-stand in the sweet by-and-by"
+    }
+  ],
+  "order": [
+    "v0",
+    "c0",
+    "v1",
+    "c0",
+    "b0",
+    "v2",
+    "c0"
+  ]
+}
